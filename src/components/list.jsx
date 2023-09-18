@@ -5,9 +5,9 @@ import './list.scss'
 function renderTierImage(tier) {
   switch (tier) {
     case 'CHALLENGER':
-      return <img src="/src/assets/challenger.png" alt="Master Tier" />;
+      return <img src="/src/assets/challenger.png" alt="Challenger Tier" />;
     case 'GRANDMASTER':
-      return <img src="/src/assets/grandmaster.png" alt="Master Tier" />;
+      return <img src="/src/assets/grandmaster.png" alt="Grandmaster Tier" />;
     case 'MASTER':
       return <img src="/src/assets/master.png" alt="Master Tier" />;
     case 'DIAMOND':
