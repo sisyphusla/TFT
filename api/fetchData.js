@@ -18,11 +18,12 @@ export default async (req, res) => {
     let startTime = Date.now();
 
     for (const team in playerList) {
-      allSummonerInfo[team] = [];
+      allSummonerInfo[team] = Array(playerList[team].length).fill(null);
       const teamMembers = playerList[team];
       const batch = [];
 
-      for (const player of teamMembers) {
+      for (let i = 0; i < teamMembers.length; i++) {
+        const player = teamMembers[i];
         if (countPerTwoMinutes >= 100) {
           // 兩分鐘100次限制
           const elapsedTime = Date.now() - startTime;
@@ -54,7 +55,7 @@ export default async (req, res) => {
                 tier: firstEntry.tier || 'N/A',
                 leaguePoints: firstEntry.leaguePoints,
               };
-              allSummonerInfo[team].push(summonerInfo);
+              allSummonerInfo[team][i] = summonerInfo;
             })
         );
 
@@ -67,7 +68,7 @@ export default async (req, res) => {
       }
     }
 
-    res.setHeader('Cache-Control', 's-maxage=3600, stale-while-revalidate');
+    res.setHeader('Cache-Control', 's-maxage=120, stale-while-revalidate');
     res.status(200).json(allSummonerInfo);
   } catch (error) {
     console.error('Error name:', error.name);
