@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';  // 導入 axios
+import axios from 'axios';
 
 function List() {
 
@@ -8,10 +8,10 @@ function List() {
   useEffect(() => {
     const fetchSummonerData = async () => {
       try {
-        const response = await axios.get('/api/fetchData');  // 使用 axios 的 get 方法
+        const response = await axios.get('/api/fetchData');
         const data = response.data;  // axios 會將響應數據存儲在 `data` 屬性中
         setSummonerData(data);
-        console.log(data);
+        // console.log(data);
       } catch (error) {
         console.error('Error fetching data:', error);
       }

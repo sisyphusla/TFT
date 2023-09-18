@@ -1,4 +1,5 @@
 import axios from 'axios';
+// const axios = require('axios');
 import playerList from '../src/components/playerList.json' assert { type: 'json' };
 
 export default async (req, res) => {
