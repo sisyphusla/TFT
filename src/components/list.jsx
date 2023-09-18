@@ -8,8 +8,8 @@ function List() {
   useEffect(() => {
     const fetchSummonerData = async () => {
       try {
-        const response = await axios.get('/api/fetchData');
-        const data = response.data;  // axios 會將響應數據存儲在 `data` 屬性中
+        const response = await axios.get('/api/fetchData.js');
+        const data = response.data;
         setSummonerData(data);
         // console.log(data);
       } catch (error) {

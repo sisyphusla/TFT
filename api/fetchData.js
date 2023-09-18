@@ -1,8 +1,13 @@
 import axios from 'axios';
-// const axios = require('axios');
-import playerList from '../src/components/playerList.json' assert { type: 'json' };
+import { readFileSync } from 'fs';
+import path from 'path';
 
 export default async (req, res) => {
+  const file = path.join(process.cwd(), 'src', 'components', 'playerList.json');
+
+  const jsonString = readFileSync(file, 'utf8');
+
+  const playerList = JSON.parse(jsonString);
   try {
     const apiKey = process.env.VITE_API_KEY;
     let allSummonerInfo = {};
