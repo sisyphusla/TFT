@@ -1,17 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './list.scss'
+import diamond from '../assets/diamond.png'
+import master from '../assets/master.png'
+import grandmaster from '../assets/grandmaster.png'
+import challenger from '../assets/challenger.png'
+
 
 function renderTierImage(tier) {
   switch (tier) {
     case 'CHALLENGER':
-      return <img src="/src/assets/challenger.png" alt="Challenger Tier" />;
+      return <img src={challenger} alt="challenger" />;
     case 'GRANDMASTER':
-      return <img src="/src/assets/grandmaster.png" alt="Grandmaster Tier" />;
+      return <img src={grandmaster} alt="grandmaster" />;
     case 'MASTER':
-      return <img src="/src/assets/master.png" alt="Master Tier" />;
+      return <img src={master} alt="master" />;
     case 'DIAMOND':
-      return <img src="/src/assets/diamond.png" alt="Diamond Tier" />;
+      return <img src={diamond} alt="diamond" />;
     default:
       return <span>{tier}</span>;
   }

@@ -4,7 +4,17 @@ import path from 'path';
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
+// 定義全局變量作為緩存
+let allSummonerInfoCache = null;
+let lastFetched = null;
+
 export default async (req, res) => {
+  // 檢查是否有緩存
+  const now = Date.now();
+  if (allSummonerInfoCache && now - lastFetched < 120000) {
+    return res.status(200).json(allSummonerInfoCache);
+  }
+
   /* https://vercel.com/guides/how-can-i-use-files-in-serverless-functions */
   const file = path.join(process.cwd(), 'src', 'components', 'playerList.json');
   const jsonString = readFileSync(file, 'utf8');
@@ -67,6 +77,9 @@ export default async (req, res) => {
         await Promise.all(batch);
       }
     }
+    // 成功獲取數據後更新緩存
+    allSummonerInfoCache = allSummonerInfo;
+    lastFetched = now;
 
     res.setHeader('Cache-Control', 's-maxage=120, stale-while-revalidate');
     res.status(200).json(allSummonerInfo);
