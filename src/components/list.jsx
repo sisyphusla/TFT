@@ -28,7 +28,7 @@ function List() {
   useEffect(() => {
     const fetchSummonerData = async () => {
       try {
-        const response = await axios.get('/api/fetchData.js');
+        const response = await axios.get('/src/components/ouo.json');
         const data = response.data;
         setSummonerData(data);
       } catch (error) {
