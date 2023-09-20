@@ -64,6 +64,7 @@ export default async (req, res) => {
                 summonerName: firstEntry.summonerName,
                 tier: firstEntry.tier || 'N/A',
                 leaguePoints: firstEntry.leaguePoints,
+                twitchId: player.twitchId,
               };
               allSummonerInfo[team][i] = summonerInfo;
             })

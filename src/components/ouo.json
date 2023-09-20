@@ -2,189 +2,225 @@
   "花輪TEAM": [
     {
       "summonerName": "花輪同學",
-      "tier": "MASTER",
-      "leaguePoints": 182
+      "tier": "GRANDMASTER",
+      "leaguePoints": 232,
+      "twitchId": "gearbaby1010"
     },
     {
       "summonerName": "河川先子",
       "tier": "GRANDMASTER",
-      "leaguePoints": 326
+      "leaguePoints": 415,
+      "twitchId": "#"
     },
     {
       "summonerName": "摸雞MoGG",
-      "tier": "MASTER",
-      "leaguePoints": 66
+      "tier": "GRANDMASTER",
+      "leaguePoints": 228,
+      "twitchId": "mogg666"
     },
     {
       "summonerName": "白龍1",
       "tier": "GRANDMASTER",
-      "leaguePoints": 505
+      "leaguePoints": 458,
+      "twitchId": "#"
     },
     {
       "summonerName": "大型貓咪",
       "tier": "MASTER",
-      "leaguePoints": 258
+      "leaguePoints": 31,
+      "twitchId": "grandescape98"
     },
     {
       "summonerName": "Ivytszl",
-      "tier": "GRANDMASTER",
-      "leaguePoints": 553
+      "tier": "CHALLENGER",
+      "leaguePoints": 845,
+      "twitchId": "#"
     },
     {
       "summonerName": "咕麻油熙",
       "tier": "MASTER",
-      "leaguePoints": 81
+      "leaguePoints": 164,
+      "twitchId": "xiaomayo"
     },
     {
       "summonerName": "爆豪1",
       "tier": "MASTER",
-      "leaguePoints": 280
+      "leaguePoints": 133,
+      "twitchId": "#"
     },
     {
       "summonerName": "一波不贏",
       "tier": "CHALLENGER",
-      "leaguePoints": 507
+      "leaguePoints": 576,
+      "twitchId": "#"
     }
   ],
   "綠茶TEAM": [
     {
       "summonerName": "圖奇奶王 綠茶",
       "tier": "GRANDMASTER",
-      "leaguePoints": 415
+      "leaguePoints": 500,
+      "twitchId": "greentea"
     },
     {
       "summonerName": "Ignorant老王",
       "tier": "CHALLENGER",
-      "leaguePoints": 903
+      "leaguePoints": 907,
+      "twitchId": "#"
     },
     {
       "summonerName": "WayneOvO",
-      "tier": "MASTER",
-      "leaguePoints": 414
+      "tier": "CHALLENGER",
+      "leaguePoints": 522,
+      "twitchId": "#"
     },
     {
       "summonerName": "當我拔出兩盞路燈",
-      "tier": "GRANDMASTER",
-      "leaguePoints": 421
+      "tier": "CHALLENGER",
+      "leaguePoints": 510,
+      "twitchId": "bravegun321"
     },
     {
       "summonerName": "FallHalp",
       "tier": "GRANDMASTER",
-      "leaguePoints": 362
+      "leaguePoints": 444,
+      "twitchId": "#"
     },
     {
       "summonerName": "WackyCCC",
       "tier": "GRANDMASTER",
-      "leaguePoints": 398
+      "leaguePoints": 404,
+      "twitchId": "#"
     },
     {
       "summonerName": "小鵝博士",
       "tier": "GRANDMASTER",
-      "leaguePoints": 257
+      "leaguePoints": 202,
+      "twitchId": "catbobogo"
     },
     {
       "summonerName": "我只會打星海",
-      "tier": "MASTER",
-      "leaguePoints": 246
+      "tier": "GRANDMASTER",
+      "leaguePoints": 429,
+      "twitchId": "#"
     },
     {
       "summonerName": "寶豬泥汞啥",
       "tier": "MASTER",
-      "leaguePoints": 112
+      "leaguePoints": 123,
+      "twitchId": "manuhhm"
     }
   ],
   "TerryTEAM": [
     {
       "summonerName": "ToBeTerry",
       "tier": "CHALLENGER",
-      "leaguePoints": 620
+      "leaguePoints": 690,
+      "twitchId": "terrytft"
     },
     {
       "summonerName": "K寶寶生氣了",
       "tier": "CHALLENGER",
-      "leaguePoints": 562
+      "leaguePoints": 651,
+      "twitchId": "kbaobao"
     },
     {
       "summonerName": "FINGFING薯條",
-      "tier": "GRANDMASTER",
-      "leaguePoints": 419
+      "tier": "CHALLENGER",
+      "leaguePoints": 556,
+      "twitchId": "#"
     },
     {
       "summonerName": "問題為何會越多",
-      "tier": "GRANDMASTER",
-      "leaguePoints": 603
+      "tier": "CHALLENGER",
+      "leaguePoints": 623,
+      "twitchId": "#"
     },
     {
       "summonerName": "摘星旅人",
       "tier": "GRANDMASTER",
-      "leaguePoints": 382
+      "leaguePoints": 369,
+      "twitchId": "daveng12320"
     },
     {
       "summonerName": "Suzune122",
-      "tier": "GRANDMASTER",
-      "leaguePoints": 571
+      "tier": "CHALLENGER",
+      "leaguePoints": 654,
+      "twitchId": "suzune215"
     },
     {
       "summonerName": "Cute SUP O v O b",
       "tier": "CHALLENGER",
-      "leaguePoints": 599
+      "leaguePoints": 767,
+      "twitchId": "#"
     },
     {
       "summonerName": "QTIa",
       "tier": "MASTER",
-      "leaguePoints": 39
+      "leaguePoints": 179,
+      "twitchId": "#"
     },
     {
       "summonerName": "刺蝟君",
       "tier": "MASTER",
-      "leaguePoints": 20
+      "leaguePoints": 19,
+      "twitchId": "hedgehog_tft"
     }
   ],
   "拿鐵TEAM": [
     {
       "summonerName": "小鐵啊",
       "tier": "CHALLENGER",
-      "leaguePoints": 497
+      "leaguePoints": 708,
+      "twitchId": "jazlatte"
     },
     {
       "summonerName": "天晴Haruru",
       "tier": "CHALLENGER",
-      "leaguePoints": 647
+      "leaguePoints": 930,
+      "twitchId": "tcharuru"
     },
     {
       "summonerName": "如果鵝鵝",
-      "tier": "GRANDMASTER",
-      "leaguePoints": 386
+      "tier": "CHALLENGER",
+      "leaguePoints": 509,
+      "twitchId": "if220524"
     },
     {
       "summonerName": "夏夕夏景",
-      "tier": "MASTER",
-      "leaguePoints": 215
+      "tier": "GRANDMASTER",
+      "leaguePoints": 228,
+      "twitchId": "#"
     },
     {
       "summonerName": "長夢未央Ô",
-      "tier": "GRANDMASTER",
-      "leaguePoints": 454
+      "tier": "CHALLENGER",
+      "leaguePoints": 711,
+      "twitchId": "#"
     },
     {
       "summonerName": "ajoe1231",
       "tier": "CHALLENGER",
-      "leaguePoints": 528
+      "leaguePoints": 598,
+      "twitchId": "ajoe1231"
     },
     {
       "summonerName": "小娜啊",
-      "tier": "MASTER",
-      "leaguePoints": 370
+      "tier": "GRANDMASTER",
+      "leaguePoints": 205,
+      "twitchId": "nana4ni"
     },
     {
       "summonerName": "配口拉",
-      "tier": "DIAMOND",
-      "leaguePoints": 18
+      "tier": "MASTER",
+      "leaguePoints": 64,
+      "twitchId": "4_pin"
     },
     {
       "summonerName": "夏沫沫ÜÜ",
-      "tier": "MASTER",
-      "leaguePoints": 208
+      "tier": "GRANDMASTER",
+      "leaguePoints": 188,
+      "twitchId": "#"
     }
   ]
 }

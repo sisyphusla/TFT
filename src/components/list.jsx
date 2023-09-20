@@ -24,13 +24,20 @@ function renderTierImage(tier) {
 
 function List() {
   const [summonerData, setSummonerData] = useState([]);
+  const [liveStreamers, setLiveStreamers] = useState([]);
 
   useEffect(() => {
     const fetchSummonerData = async () => {
       try {
         const response = await axios.get('/api/fetchData.js');
+        const response1 = await axios.get('/api/fatchTwitchLive.js');
+
         const data = response.data;
+        const liveData = response1.data;
         setSummonerData(data);
+        const liveNames = liveData.filter(item => item && item.streamerName).map((item) => item.streamerName);
+        setLiveStreamers(liveNames);
+        console.log(summonerData['TerryTEAM']);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -56,7 +63,14 @@ function List() {
             <ul>
               {(summonerData[teamName] || []).map((member, index) => (
                 <li key={index} className="listItem">
-                  <div className="itemName">{member.summonerName}</div>
+                  <div className="itemName">{member.summonerName}
+                  </div>
+                  {/* 如果這個實況主正在直播，則顯示 "LIVE" 按鈕 */}
+                  <div className={liveStreamers.includes(`${member.twitchId}`) ? 'liveBtnVisible' : 'liveBtnHidden'}>
+                    <a href={`https://www.twitch.tv/${member.twitchId}`} target="_blank" rel="noopener noreferrer">
+                      <button className='liveBtn'>LIVE</button>
+                    </a>
+                  </div>
                   <div className="itemPic">{renderTierImage(member.tier)}</div>
                   <div className="itemPoint">{member.leaguePoints} LP</div>
                 </li>
