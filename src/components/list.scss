@@ -1,10 +1,23 @@
 .container {
   display: flex;
   justify-content: center;
-  // flex-wrap: wrap; // 允許換行
+  flex-wrap: wrap; /* 允許子元素換行 */
+
+  @media only screen and (max-width: 1140px) {
+    .team {
+      width: 10vw; /* 設置寬度為50%減去兩側的間距，使每行只有兩個.team元素 */
+      margin: 2vh 1vh;
+    }
+  }
 
   @media only screen and (max-width: 768px) {
-    flex-direction: column; // 小於 768px 時，讓 .team 排列從上到下
+    flex-direction: column; /* 讓.team從上到下排列 */
+
+    .team {
+      width: 75%; 
+      margin:1vh auto;
+
+    }
   }
 
   .team {

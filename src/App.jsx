@@ -8,12 +8,12 @@ function App() {
 
 
   return (
-    <>
+    <div className='app'>
       <Header />
       <List />
       <Footer />
       <Analytics />
-    </>
+    </div>
   )
 }
 

@@ -5,6 +5,7 @@ import diamond from '../assets/diamond.png'
 import master from '../assets/master.png'
 import grandmaster from '../assets/grandmaster.png'
 import challenger from '../assets/challenger.png'
+import Loading from './loading'
 
 
 function renderTierImage(tier) {
@@ -25,6 +26,7 @@ function renderTierImage(tier) {
 function List() {
   const [summonerData, setSummonerData] = useState([]);
   const [liveStreamers, setLiveStreamers] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchSummonerData = async () => {
@@ -37,7 +39,7 @@ function List() {
         setSummonerData(data);
         const liveNames = liveData.filter(item => item && item.streamerName).map((item) => item.streamerName);
         setLiveStreamers(liveNames);
-        console.log(summonerData['TerryTEAM']);
+        setLoading(false); // 數據加載完成後，設置loading狀態為false
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -45,6 +47,14 @@ function List() {
 
     fetchSummonerData();
   }, []);
+
+  if (loading) {
+    return (
+      <>
+        <Loading />
+      </>
+    );
+  }
 
   return (
     <div className='container'>

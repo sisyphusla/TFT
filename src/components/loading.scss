@@ -1,0 +1,53 @@
+@property --angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+
+@keyframes move {
+  0% {
+    --angle: 0deg;
+  }
+  100% {
+    --angle: 360deg;
+    filter: hue-rotate(360deg);
+  }
+}
+
+ul,
+li {
+  list-style: none;
+}
+.loadContainer{
+  min-height: 80vh;
+  margin: auto;
+  display: flex;
+  justify-content: center; // 水平居中子元素
+  align-items: center;     // 垂直居中子元素
+  position: relative;      // 為了使ul和loadingText能夠重疊
+  .loadingText {
+    position: absolute;      // 使文字位於ul之上
+    z-index: 1;              // 確保文字位於最前面
+    font-size: 1.5rem;        
+    color: black;            
+  }
+  .loadingUl{
+    // justify-self: center;
+    align-self: center;
+    padding-left: 0;
+
+    .loadingLi {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      animation: move 3s var(--delay) infinite ease-in-out;
+      transform: translate(
+        calc(sin(var(--angle)) * 60px),
+        calc(cos(var(--angle)) * 60px)
+      );
+      background: #2ecce0;
+    }
+  }
+}
