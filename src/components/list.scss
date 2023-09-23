@@ -3,9 +3,9 @@
   justify-content: center;
   flex-wrap: wrap; /* 允許子元素換行 */
 
-  @media only screen and (max-width: 1140px) {
+  @media only screen and (max-width: 1280px) {
     .team {
-      flex-basis:40%; /* 設定寬度，使其占據約50%的空間 */
+      flex-basis:40%; 
       margin: 1vh auto;
     }
   }
@@ -14,15 +14,10 @@
   @media only screen and (max-width: 768px) {
     flex-direction: column; /* 讓.team從上到下排列 */
 
-    .team {
-      width: 75%; 
-      margin:1vh auto;
-
-    }
   }
 
   .team {
-    width: 22vw;
+    width: 20vw;
     height: 100%;
     margin: 2vh;
 
@@ -32,7 +27,7 @@
       margin-right: auto;
     }
     .teamName{
-      height: 100%;
+      line-height: 2.5rem;
     }
 
     ul {
