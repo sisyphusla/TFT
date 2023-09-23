@@ -69,7 +69,7 @@ function List() {
 
         return (
           <div key={teamName} className="team">
-            <h2>{teamName}</h2>
+            <h2 className='teamName'>{teamName}</h2>
             <ul>
               {(summonerData[teamName] || []).map((member, index) => (
                 <li key={index} className="listItem">
