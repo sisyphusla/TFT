@@ -39,13 +39,13 @@ li {
 
     .loadingLi {
       position: absolute;
-      width: 10px;
-      height: 10px;
+      width: 15px;
+      height: 15px;
       border-radius: 50%;
       animation: move 3s var(--delay) infinite ease-in-out;
       transform: translate(
-        calc(sin(var(--angle)) * 60px),
-        calc(cos(var(--angle)) * 60px)
+        calc(sin(var(--angle)) * 80px),
+        calc(cos(var(--angle)) * 80px)
       );
       background: #2ecce0;
     }
