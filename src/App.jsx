@@ -4,6 +4,7 @@ import List from './components/list'
 import Footer from './components/footer'
 import SEO from './components/seo'
 import { Analytics } from '@vercel/analytics/react';
+import TabsComponent from './components/tabs'
 
 function App() {
 
@@ -11,7 +12,7 @@ function App() {
   return (
     <div className='app'>
       <Header />
-      <List />
+      <TabsComponent />
       <Footer />
       <Analytics />
       <SEO

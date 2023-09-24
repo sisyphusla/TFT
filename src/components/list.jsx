@@ -83,7 +83,9 @@ function List() {
                     </a>
                   </div>
                   <div className="itemPic">{renderTierImage(member.tier)}</div>
-                  <div className="itemPoint">{member.leaguePoints} LP</div>
+                  <div className="itemPoint">
+                    <span className="pointNumber">{member.leaguePoints}</span>
+                  </div>
                 </li>
               ))}
             </ul>

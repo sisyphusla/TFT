@@ -4,10 +4,8 @@ import React from 'react';
 function Header() {
 
   return (
-    <div className='footer'>
+    <div className='hader'>
       <h1>
-        台服SET9.5分組衝分賽
-
       </h1>
     </div>
   );
