@@ -16,8 +16,8 @@ const SEO = ({ title, description, keywords, ogTitle, ogDescription, ogUrl, ogIm
       {/* Open Graph 標籤 */}
       <meta property="og:title" content={ogTitle || title} />
       <meta property="og:description" content={ogDescription || description} />
-      <meta property="og:image" content={ogImgUrl}></meta>
-      <meta data-react-helmet="true" property="og:url" content={ogUrl}></meta>
+      <meta property="og:image" content={ogImgUrl} />
+      <meta property="og:url" content={ogUrl} />
 
 
       {/* Twitter Card */}
