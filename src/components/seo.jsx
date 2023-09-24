@@ -10,6 +10,8 @@ const SEO = ({ title, description, keywords, ogTitle, ogDescription, ogUrl, ogIm
       <title>{title}</title>
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords} />
+      <meta name="Robots" content='all' />
+
 
       {/* Open Graph 標籤 */}
       <meta property="og:title" content={ogTitle || title} />
