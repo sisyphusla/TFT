@@ -7,7 +7,7 @@ function TabsComponent() {
   const [activeTab, setActiveTab] = useState('A');
 
   return (
-    <div>
+    <div className='tabsContainer'>
       <div className="tabs">
         <button
           className={activeTab === 'A' ? 'active' : ''}

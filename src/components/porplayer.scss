@@ -2,13 +2,20 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
   margin-bottom: 5vh;
-
+  
   table {
-    width: 90%;
+    width: 100%; 
     border-collapse: collapse;
     margin-top: 20px;
+
+    @media (min-width: 1140px) and (max-width: 1279px) {
+      width: 100%;
+    }
+    
+    @media (min-width: 1280px) {
+      width: 1140px;
+    }
 
     thead {
       background-color: #2b2929;
@@ -19,6 +26,15 @@
           padding: 12px 20px;
           border-bottom: 1px solid #bbbbbb;
           font-weight: 600;
+
+          @media (max-width: 768px) {
+            padding: 8px 10px;  // 縮小間距
+          }
+          @media (max-width: 480px) {
+            padding: 1px 5px;  
+            font-size: 12px;  
+          }
+          
         }
       }
     }
@@ -31,73 +47,33 @@
           padding: 2px 20px;
           border-bottom: 1px solid #bbbbbb;
 
+          @media (max-width: 768px) {
+            padding: 1px 10px;  // 縮小間距
+          }
+          @media (max-width: 480px) {
+            padding: 1px 5px;  
+            font-size: 10px;  
+          }
 
           &:nth-child(4) {
             background-color: #e7e7ad;  
           }
-          img{
+
+          img {
             height: 48px;
             width: 48px;
+            
+            @media (max-width: 768px) {
+              height: 36px;  // 縮小圖片
+              width: 36px;
+            }
+            @media (max-width: 480px) {
+              height: 28px;  // 更小的圖片大小
+              width: 28px;
+            }
           }
         }
       }
     }
   }
-}
-
-@media (max-width: 768px) {
-  table {
-    width: 95%;
-
-    thead {
-      tr {
-        th {
-          padding: 10px 15px;
-        }
-      }
-    }
-
-    tbody {
-      tr {
-        td {
-          padding: 2px 15px;
-
-          img {
-            height: 40px;
-            width: 40px;
-          }
-        }
-      }
-    }
-  }
-}
-
-// Mobile breakpoint
-@media (max-width: 480px) {
-  table {
-    width: 100%;
-
-    thead {
-      tr {
-        th {
-          padding: 8px 10px;
-          font-size: 12px;
-        }
-      }
-    }
-
-    tbody {
-      tr {
-        td {
-          padding: 1px 10px;
-
-          img {
-            height: 32px;
-            width: 32px;
-          }
-        }
-      }
-    }
-  }
-
 }

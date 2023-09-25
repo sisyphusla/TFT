@@ -24,6 +24,7 @@ function ProPlayer() {
     const fetchData = async () => {
       try {
         const response = await axios.get('/api/fetchTopPlayer.js');
+        // const response = await axios.get('src/components/ouou.json');
         const data = response.data;
         setPlayers(data);
         setLoading(false);
