@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './list.scss'
-import diamond from '../assets/diamond.png'
-import master from '../assets/master.png'
-import grandmaster from '../assets/grandmaster.png'
-import challenger from '../assets/challenger.png'
+import challenger from '../assets/challenger.webp'
+import master from '../assets/master.webp'
+import grandmaster from '../assets/grandmaster.webp'
 import Loading from './loading'
 
 

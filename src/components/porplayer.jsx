@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './porplayer.scss'
-import grandmaster from '../assets/grandmaster.png'
-import challenger from '../assets/challenger.png'
+import grandmaster from '../assets/grandmaster.webp'
+import challenger from '../assets/challenger.webp'
 import Loading from './loading'
 
 function renderTierImage(tier) {
