@@ -2,7 +2,7 @@ import axios from 'axios';
 import { readFileSync } from 'fs';
 import path from 'path';
 
-let cache = null;
+let cache = {};
 let cacheTimestamp = null;
 
 const getStreamerStatus = async (STREAMER_NAME) => {
@@ -23,26 +23,48 @@ const getStreamerStatus = async (STREAMER_NAME) => {
     );
 
     const data = response.data;
-
+    const now = Date.now();
     if (data.data && data.data.length > 0) {
+      cache[STREAMER_NAME] = now;
       return {
         streamerName: STREAMER_NAME,
       };
+    } else {
+      return; // 此處返回undefined
     }
   } catch (error) {
     console.error('Error:', error);
   }
 };
 
+const areAllStreamersCached = (playerList) => {
+  for (const team in playerList) {
+    const teamMembers = playerList[team];
+    for (const member of teamMembers) {
+      const STREAMER_NAME = member.twitchId;
+      if (STREAMER_NAME !== '#' && !cache[STREAMER_NAME]) {
+        return false;
+      }
+    }
+  }
+  return true;
+};
+
 export default async (req, res) => {
   const now = Date.now();
-  if (cache && now - cacheTimestamp < 120000) {
-    return res.status(200).send(cache);
-  }
-
   const file = path.join(process.cwd(), 'src', 'components', 'playerList.json');
   const jsonString = readFileSync(file, 'utf8');
   const playerList = JSON.parse(jsonString);
+
+  if (
+    cache &&
+    now - cacheTimestamp < 120000 &&
+    areAllStreamersCached(playerList)
+  ) {
+    return res
+      .status(200)
+      .send(Object.keys(cache).map((name) => ({ streamerName: name })));
+  }
 
   let allPromises = [];
   let currentBatch = [];
@@ -70,8 +92,7 @@ export default async (req, res) => {
 
   try {
     const results = await Promise.all(allPromises);
-    const flatResults = results.flat();
-    cache = flatResults;
+    const flatResults = results.flat().filter((result) => result !== undefined);
     cacheTimestamp = now;
     res.status(200).send(flatResults);
   } catch (error) {

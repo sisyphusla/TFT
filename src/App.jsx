@@ -1,6 +1,5 @@
 import './App.css'
 import Header from './components/header'
-import List from './components/list'
 import Footer from './components/footer'
 import SEO from './components/seo'
 import { Analytics } from '@vercel/analytics/react';
@@ -23,8 +22,6 @@ function App() {
 
         ogUrl="https://tftrank.vercel.app/"
         ogImgUrl="https://tftrank.vercel.app/tftranksummarycard.png"
-
-
       />
     </div>
   )
