@@ -2,17 +2,15 @@ import axios from 'axios';
 import { readFileSync } from 'fs';
 import path from 'path';
 
-let cache = {};
+let cache = null;
 let cacheTimestamp = null;
 
 const getStreamerStatus = async (STREAMER_NAME) => {
   const CLIENT_ID = process.env.VITE_TWITCH_CLIENT_ID;
   const OAUTH_TOKEN = process.env.VITE_TWITCH_OAUTH_TOKEN;
-
-  if (STREAMER_NAME === '#' || cache[STREAMER_NAME]) {
+  if (STREAMER_NAME === '#') {
     return null;
   }
-
   try {
     const response = await axios.get(
       `https://api.twitch.tv/helix/streams?user_login=${STREAMER_NAME}`,
@@ -27,8 +25,9 @@ const getStreamerStatus = async (STREAMER_NAME) => {
     const data = response.data;
 
     if (data.data && data.data.length > 0) {
-      cache[STREAMER_NAME] = true;
-      return { streamerName: STREAMER_NAME };
+      return {
+        streamerName: STREAMER_NAME,
+      };
     }
   } catch (error) {
     console.error('Error:', error);
@@ -37,27 +36,26 @@ const getStreamerStatus = async (STREAMER_NAME) => {
 
 export default async (req, res) => {
   const now = Date.now();
-
-  if (cacheTimestamp && now - cacheTimestamp < 120000) {
-    return res
-      .status(200)
-      .send(Object.keys(cache).map((name) => ({ streamerName: name })));
+  if (cache && now - cacheTimestamp < 120000) {
+    return res.status(200).send(cache);
   }
 
   const file = path.join(process.cwd(), 'src', 'components', 'playerList.json');
   const jsonString = readFileSync(file, 'utf8');
   const playerList = JSON.parse(jsonString);
 
-  const allPromises = [];
+  let allPromises = [];
   let currentBatch = [];
+
   const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
   for (const team in playerList) {
     const teamMembers = playerList[team];
     for (const member of teamMembers) {
       const STREAMER_NAME = member.twitchId;
-      currentBatch.push(getStreamerStatus(STREAMER_NAME));
-
+      if (STREAMER_NAME !== '#') {
+        currentBatch.push(getStreamerStatus(STREAMER_NAME));
+      }
       if (currentBatch.length >= 30) {
         allPromises.push(Promise.all(currentBatch));
         await sleep(60000);
@@ -72,7 +70,8 @@ export default async (req, res) => {
 
   try {
     const results = await Promise.all(allPromises);
-    const flatResults = results.flat().filter(Boolean);
+    const flatResults = results.flat().filter((result) => result !== undefined);
+    cache = flatResults;
     cacheTimestamp = now;
     res.status(200).send(flatResults);
   } catch (error) {
