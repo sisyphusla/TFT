@@ -23,7 +23,7 @@
 
       tr {
         th {
-          padding: 12px 20px;
+          padding: 10px 20px;
           border-bottom: 1px solid #bbbbbb;
           font-weight: 600;
 
@@ -31,7 +31,7 @@
             padding: 8px 10px;  // 縮小間距
           }
           @media (max-width: 480px) {
-            padding: 1px 5px;  
+            padding: 1px 4px;  
             font-size: 12px;  
           }
           
@@ -44,7 +44,7 @@
         background-color: white;
 
         td {
-          padding: 2px 20px;
+          padding: 0px 10px;
           border-bottom: 1px solid #bbbbbb;
 
           @media (max-width: 768px) {
@@ -60,8 +60,8 @@
           }
 
           img {
-            height: 48px;
-            width: 48px;
+            height: 40px;
+            width: 40px;
             
             @media (max-width: 768px) {
               height: 36px;  // 縮小圖片
