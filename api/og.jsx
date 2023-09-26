@@ -77,21 +77,6 @@ export default async function handler() {
     {
       width: 800,
       height: 400,
-      debug: false,
-      fonts: [
-        {
-          name: "Grotesk",
-          data: groteskRegular,
-          style: "normal",
-          weight: 400,
-        },
-        {
-          name: "Grotesk",
-          data: groteskSemibold,
-          style: "normal",
-          weight: 600,
-        },
-      ],
     }
   );
 }
