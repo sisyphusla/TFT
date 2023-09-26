@@ -21,7 +21,7 @@ function App() {
         keywords="TFT,戰棋,SET9.5 "
 
         ogUrl="https://tftrank.vercel.app/"
-        ogImgUrl="https://tftrank.vercel.app/tftranksummarycard.png"
+        ogImgUrl="https://tftrank.vercel.app/api/og"
       />
     </div>
   )
