@@ -30,8 +30,8 @@ function List() {
   useEffect(() => {
     const fetchSummonerData = async () => {
       try {
-        // const response = await axios.get('src/components/ouo.json');
-        // const response1 = await axios.get('src/components/twitch.json');
+        // const response = await axios.get('/src/components/ouo.json');
+        // const response1 = await axios.get('/src/components/twitch.json');
         const response = await axios.get('/api/fetchData.js');
         const response1 = await axios.get('/api/fatchTwitchLive.js');
 
