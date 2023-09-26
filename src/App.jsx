@@ -4,7 +4,6 @@ import Footer from './components/footer'
 import SEO from './components/seo'
 import { Analytics } from '@vercel/analytics/react';
 import TabsComponent from './components/tabs'
-import ogImg from './assets/ogImage.svg'
 
 function App() {
 
@@ -22,7 +21,7 @@ function App() {
         keywords="TFT,戰棋,SET9.5 "
 
         ogUrl="https://tftrank.vercel.app/"
-        ogImgUrl={ogImg}
+        ogImgUrl="https://tftog.vercel.app/api/og"
       />
     </div>
   )

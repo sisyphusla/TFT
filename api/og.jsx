@@ -5,7 +5,7 @@ export const config = {
   runtime: 'edge',
 };
 
-export default async function handler() {
+export default async function Og() {
   return new ImageResponse(
     (
       <div
@@ -18,7 +18,7 @@ export default async function handler() {
           justifyContent: 'center',
           letterSpacing: '-.02em',
           fontWeight: 700,
-          background: 'white',
+          background: 'red',
         }}
       >
         <div
