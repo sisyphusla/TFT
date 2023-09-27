@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
-import { escapeInject, dangerouslySkipEscape } from 'vite-plugin-ssr';
+import { escapeInject, dangerouslySkipEscape } from 'vike/server';
 import App from '../App.jsx'
 import { Helmet } from "react-helmet";
 
