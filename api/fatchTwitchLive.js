@@ -73,7 +73,14 @@ export default async (req, res) => {
     const flatResults = results.flat().filter((result) => result !== undefined);
     cache = flatResults;
     cacheTimestamp = now;
-    res.setHeader('Cache-Control', 's-maxage=120, stale-while-revalidate120');
+
+    /* https://vercel.com/docs/functions/serverless-functions/edge-caching */
+    /* vercel的Cache-Control設置策略 */
+    res.setHeader(
+      'Cache-Control',
+      'max-age=0, s-maxage=60, stale-while-revalidate=60'
+    );
+
     res.status(200).send(flatResults);
   } catch (error) {
     console.error('Error:', error);

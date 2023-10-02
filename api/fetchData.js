@@ -83,8 +83,12 @@ export default async (req, res) => {
     // 成功獲取數據後更新緩存
     allSummonerInfoCache = allSummonerInfo;
     lastFetched = now;
-
-    res.setHeader('Cache-Control', 's-maxage=120, stale-while-revalidate120');
+    /* https://vercel.com/docs/functions/serverless-functions/edge-caching */
+    /* vercel的Cache-Control設置策略 */
+    res.setHeader(
+      'Cache-Control',
+      'max-age=0, s-maxage=60, stale-while-revalidate=60'
+    );
     res.status(200).json(allSummonerInfo);
   } catch (error) {
     console.error('Error name:', error.name);
