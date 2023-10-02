@@ -70,7 +70,7 @@ export default async (req, res) => {
     const top50Players = topPlayers.slice(0, 50);
     lastCacheTime = currentTime;
 
-    res.setHeader('Cache-Control', 's-maxage=120, stale-while-revalidate');
+    res.setHeader('Cache-Control', 's-maxage=120, stale-while-revalidate120');
     res.status(200).json(top50Players);
   } catch (error) {
     console.error('Error name:', error.name);

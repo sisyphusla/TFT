@@ -59,11 +59,13 @@ export default async (req, res) => {
             )
             .then((response) => {
               const data = response.data;
-              const firstEntry = data[0] || {};
+              // 找到queueType為RANKED_TFT的物件
+              const tftEntry =
+                data.find((entry) => entry.queueType === 'RANKED_TFT') || {};
               const summonerInfo = {
-                summonerName: firstEntry.summonerName,
-                tier: firstEntry.tier || 'N/A',
-                leaguePoints: firstEntry.leaguePoints,
+                summonerName: tftEntry.summonerName,
+                tier: tftEntry.tier || 'N/A',
+                leaguePoints: tftEntry.leaguePoints,
                 twitchId: player.twitchId,
               };
               allSummonerInfo[team][i] = summonerInfo;
@@ -82,7 +84,7 @@ export default async (req, res) => {
     allSummonerInfoCache = allSummonerInfo;
     lastFetched = now;
 
-    res.setHeader('Cache-Control', 's-maxage=120, stale-while-revalidate');
+    res.setHeader('Cache-Control', 's-maxage=120, stale-while-revalidate120');
     res.status(200).json(allSummonerInfo);
   } catch (error) {
     console.error('Error name:', error.name);

@@ -73,6 +73,7 @@ export default async (req, res) => {
     const flatResults = results.flat().filter((result) => result !== undefined);
     cache = flatResults;
     cacheTimestamp = now;
+    res.setHeader('Cache-Control', 's-maxage=120, stale-while-revalidate120');
     res.status(200).send(flatResults);
   } catch (error) {
     console.error('Error:', error);
