@@ -1,12 +1,12 @@
 <div align="center">
 
-# 💡TFTRank TW💡
+# 🔥 TFTRank TW 🔥
 
 </div>
 
-### 👀 Link: https://tftrank.vercel.app/
+### 🌐 Link: https://tftrank.vercel.app/
 
-### 🧩 Built with
+### 🧩 使用工具
 
 [![built with](https://skillicons.dev/icons?i=js,html,scss,react,vite,vercel)](https://skillicons.dev)
 
@@ -20,7 +20,7 @@
 - RWD 設計四個版型，以符合現代觀看比賽用戶裝置多樣性的需求
 - 設計 SEO
 
-### Preview
+### 👀 Preview
 
 ![](assets/computer_preview_1.png)
 
@@ -30,7 +30,7 @@
 
 ![](assets/pagespeed.webp)
 
-### 本地運作
+### 💻 本地運作
 
 1.申請[Riot 開發者 API](https://developer.riotgames.com/apis)以及[Twitch 開發者 API](https://dev.twitch.tv/docs/api/)權限
 
