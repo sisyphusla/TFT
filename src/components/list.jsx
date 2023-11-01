@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import axios from 'axios';
 import './list.scss'
 import challenger from '../assets/challenger.webp'
 import master from '../assets/master.webp'
 import grandmaster from '../assets/grandmaster.webp'
 import Loading from './loading'
+
 
 
 function renderTierImage(tier) {
@@ -30,19 +31,20 @@ function List() {
   useEffect(() => {
     const fetchSummonerData = async () => {
       try {
-        // const response = await axios.get('/src/components/ouo.json');
-        // const response1 = await axios.get('/src/components/twitch.json');
-        const response = await axios.get('/api/fetchData.js');
-        const response1 = await axios.get('/api/fatchTwitchLive.js');
+        const dataPromise = axios.get('/api/fetchData.js');
+        const liveDataPromise = axios.get('/api/fetchTwitchLive.js');
 
-        const data = response.data;
-        const liveData = response1.data;
+        const dataResponse = await dataPromise;
+        const data = dataResponse.data;
         setSummonerData(data);
+        setLoading(false);
+
+        const liveDataResponse = await liveDataPromise;
+        const liveData = liveDataResponse.data;
         const liveNames = liveData.filter(item => item && item.streamerName).map((item) => item.streamerName);
         setLiveStreamers(liveNames);
-        setLoading(false); // 數據加載完成後，設置loading狀態為false
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error('Error fetching summoner data:', error);
       }
     };
 
@@ -100,4 +102,4 @@ function List() {
 }
 
 
-export default List;
+export default React.memo(List);

@@ -23,8 +23,8 @@ export default async (req, res) => {
 
   try {
     let allSummonerInfo = {};
-    let countPerSecond = 0;
-    let countPerTwoMinutes = 0;
+    let countPerTenSecond = 0;
+    let countPerTenMinutes = 0;
     let startTime = Date.now();
 
     for (const team in playerList) {
@@ -34,21 +34,21 @@ export default async (req, res) => {
 
       for (let i = 0; i < teamMembers.length; i++) {
         const player = teamMembers[i];
-        if (countPerTwoMinutes >= 100) {
-          // 兩分鐘100次限制
+        if (countPerTenMinutes >= 30000) {
+          // 十分鐘30000次限制
           const elapsedTime = Date.now() - startTime;
-          const remainingTime = 120000 - elapsedTime; // 兩分鐘（12000毫秒）
+          const remainingTime = 600000 - elapsedTime; // 10分鐘（60000毫秒）
           await delay(remainingTime);
-          countPerTwoMinutes = 0;
+          countPerTenMinutes = 0;
           startTime = Date.now();
         }
 
-        if (countPerSecond >= 20) {
-          // 每秒20次的限制，延遲1秒
+        if (countPerTenSecond >= 500) {
+          // 每十秒500次的限制，延遲0.5秒
           await Promise.all(batch);
-          await delay(1000);
+          await delay(500);
           batch.length = 0;
-          countPerSecond = 0;
+          countPerTenSecond = 0;
         }
 
         const summonerId = player.id;
@@ -59,7 +59,7 @@ export default async (req, res) => {
             )
             .then((response) => {
               const data = response.data;
-              // 找到queueType為RANKED_TFT的物件
+              // 找到queueType為RANKED_TFT的物件避免撈到非rank的資料
               const tftEntry =
                 data.find((entry) => entry.queueType === 'RANKED_TFT') || {};
               const summonerInfo = {
@@ -72,8 +72,8 @@ export default async (req, res) => {
             })
         );
 
-        countPerSecond++;
-        countPerTwoMinutes++;
+        countPerTenSecond++;
+        countPerTenMinutes++;
       }
 
       if (batch.length > 0) {
