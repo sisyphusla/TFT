@@ -23,7 +23,12 @@ function ProPlayer() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('/api/fetchTopPlayer.js');
+        const api = import.meta.env.VITE_SECRET_KEY;
+        const response = await axios.get('/api/fetchTopPlayer.js', {
+          headers: {
+            'x-api-key': api,
+          },
+        });
         // const response = await axios.get('src/components/ouou.json');
         const data = response.data;
         setPlayers(data);

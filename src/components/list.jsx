@@ -28,11 +28,21 @@ function List() {
   const [liveStreamers, setLiveStreamers] = useState([]);
   const [loading, setLoading] = useState(true);
 
+
   useEffect(() => {
     const fetchSummonerData = async () => {
       try {
-        const dataPromise = axios.get('/api/fetchData.js');
-        const liveDataPromise = axios.get('/api/fetchTwitchLive.js');
+        const api = import.meta.env.VITE_SECRET_KEY;
+        const dataPromise = axios.get('/api/fetchData.js', {
+          headers: {
+            'x-api-key': api,
+          },
+        });
+        const liveDataPromise = axios.get('/api/fetchTwitchLive.js', {
+          headers: {
+            'x-api-key': api,
+          },
+        });
 
         const dataResponse = await dataPromise;
         const data = dataResponse.data;

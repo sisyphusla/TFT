@@ -9,6 +9,11 @@ let allSummonerInfoCache = null;
 let lastFetched = null;
 
 export default async (req, res) => {
+  const apiSecret = req.headers['x-api-key'];
+  if (!apiSecret || apiSecret !== process.env.VITE_SECRET_KEY) {
+    return res.status(401).send('Unauthorized');
+  }
+
   // 檢查是否有緩存
   const now = Date.now();
   if (allSummonerInfoCache && now - lastFetched < 120000) {

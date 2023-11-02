@@ -8,6 +8,10 @@ let requestsPastTwoMinutes = 0;
 let lastRequestTime = null;
 
 export default async (req, res) => {
+  const apiSecret = req.headers['x-api-key'];
+  if (!apiSecret || apiSecret !== process.env.VITE_SECRET_KEY) {
+    return res.status(401).send('Unauthorized');
+  }
   const currentTime = Date.now();
   if (lastRequestTime) {
     if (currentTime - lastRequestTime > 1000) {
