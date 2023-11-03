@@ -9,16 +9,12 @@
     {
       "source": "/((?!assets/).*)",
       "destination": "/api/ssr.js"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/api/(.*)\\.js$",
-      "status": 404
     },
+    { "src": "/api/(.*)\\.js$", "status": 404 },
+
     {
       "src": "/api/(.*)",
-      "dest": "/api/$1"
+      "destination": "/api/$1"
     }
   ]
 }
