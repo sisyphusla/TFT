@@ -46,8 +46,10 @@ async function render(pageContext) {
         <meta name="description" content="${desc}" />
         <meta name="keywords" content="${keywords}" />
         <meta property="og:title" content="${title}" />
+        <meta property="og:description" content="${desc}" />
         <meta property="og:url" content="${ogUrl}" />
         <meta property="og:image" content="${ogImgUrl}" />
+        <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content="${title}" />
         <meta name="twitter:url" content="${ogUrl}" />
