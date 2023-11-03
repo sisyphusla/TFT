@@ -21,7 +21,13 @@ export default async (req, res) => {
   }
 
   /* https://vercel.com/guides/how-can-i-use-files-in-serverless-functions */
-  const file = path.join(process.cwd(), 'src', 'components', 'playerList.json');
+  const file = path.join(
+    process.cwd(),
+    'pages',
+    'index',
+    'components',
+    'playerList.json'
+  );
   const jsonString = readFileSync(file, 'utf8');
   const playerList = JSON.parse(jsonString);
   const apiKey = process.env.VITE_API_KEY;
