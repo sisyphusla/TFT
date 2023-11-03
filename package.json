@@ -1,20 +1,22 @@
 {
+  "name": "tft",
+  "private": true,
+  "version": "0.0.0",
   "scripts": {
     "build": "echo 'I will never be called because the `vercel-build` script supersedes me'",
     "vercel-build": "vite build",
-    "dev": "vite"
+    "dev": "NODE_ENV=development vite"
   },
   "dependencies": {
     "@vercel/analytics": "^1.1.1",
     "@vercel/node": "^3.0.7",
-    "@vitejs/plugin-react": "^4.0.4",
     "axios": "^1.6.0",
     "compression": "^1.7.4",
     "cross-env": "^7.0.3",
-    "eslint": "^8.47.0",
-    "eslint-plugin-react": "^7.33.1",
+    "eslint": "^8.52.0",
+    "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.4.3",
+    "eslint-plugin-react-refresh": "^0.4.4",
     "express": "^4.18.2",
     "prop-types": "15.8.1",
     "react": "^18.2.0",
@@ -23,7 +25,10 @@
     "sirv": "^2.0.3",
     "vercel": "^32.5.0",
     "vike": "^0.4.144",
-    "vite": "^4.4.9"
+    "vite": "^4.5.0"
   },
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.1.1"
+  }
 }
