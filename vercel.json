@@ -10,8 +10,5 @@
       "source": "/((?!assets/).*)",
       "destination": "/api/ssr.js"
     }
-  ],
-  "redirects": [
-    { "source": "/api", "destination": "/api/(.*)\\.js$", "statusCode": 404 }
   ]
 }
