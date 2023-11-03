@@ -9,12 +9,9 @@
     {
       "source": "/((?!assets/).*)",
       "destination": "/api/ssr.js"
-    },
-    { "src": "/api/(.*)\\.js$", "status": 404 },
-
-    {
-      "src": "/api/(.*)",
-      "destination": "/api/$1"
     }
+  ],
+  "redirects": [
+    { "source": "/api", "destination": "/api/(.*)\\.js$", "statusCode": 404 }
   ]
 }
