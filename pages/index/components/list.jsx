@@ -33,12 +33,12 @@ function List() {
     const fetchSummonerData = async () => {
       try {
         const api = import.meta.env.VITE_SECRET_KEY;
-        const dataPromise = axios.get('/api/fetchData.js', {
+        const dataPromise = axios.get('/api/fetchData', {
           headers: {
             'x-api-key': api,
           },
         });
-        const liveDataPromise = axios.get('/api/fetchTwitchLive.js', {
+        const liveDataPromise = axios.get('/api/fetchTwitchLive', {
           headers: {
             'x-api-key': api,
           },

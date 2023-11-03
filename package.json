@@ -5,7 +5,7 @@
   "scripts": {
     "build": "echo 'I will never be called because the `vercel-build` script supersedes me'",
     "vercel-build": "vite build",
-    "dev": "NODE_ENV=development vite"
+    "dev": "vite"
   },
   "dependencies": {
     "@vercel/analytics": "^1.1.1",
