@@ -39,6 +39,7 @@ export default async (req, res) => {
   if (!apiSecret || apiSecret !== process.env.VITE_SECRET_KEY) {
     return res.status(401).send('Unauthorized');
   }
+
   const now = Date.now();
   if (cache && now - cacheTimestamp < 120000) {
     return res.status(200).send(cache);

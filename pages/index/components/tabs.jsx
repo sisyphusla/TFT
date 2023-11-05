@@ -13,7 +13,7 @@ function TabsComponent() {
           className={activeTab === 'A' ? 'active' : ''}
           onClick={() => setActiveTab('A')}>
           <h1>
-            台服SET9.5分組衝分賽
+            台服S10分組衝分賽
           </h1>
         </button>
         <button

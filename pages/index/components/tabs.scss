@@ -8,7 +8,7 @@
   }
 
   @media (min-width: 1280px) { // 桌面尺寸
-    max-width: 1140px;
+    // max-width: 1140px;
     margin: auto;
     padding: 0; // 在大屏幕上移除邊距
   }
@@ -16,6 +16,7 @@
   .tabs {
     display: flex;
     justify-content: center;
+    margin: auto;
     width: 100%;
 
     @media (min-width: 1140px) and (max-width: 1279px) {

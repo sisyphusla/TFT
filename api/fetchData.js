@@ -74,7 +74,7 @@ export default async (req, res) => {
               const tftEntry =
                 data.find((entry) => entry.queueType === 'RANKED_TFT') || {};
               const summonerInfo = {
-                summonerName: tftEntry.summonerName,
+                summonerName: tftEntry.summonerName || player.name,
                 tier: tftEntry.tier || 'N/A',
                 leaguePoints: tftEntry.leaguePoints,
                 twitchId: player.twitchId,

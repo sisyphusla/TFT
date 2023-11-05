@@ -11,6 +11,7 @@
     "@vercel/analytics": "^1.1.1",
     "@vercel/node": "^3.0.7",
     "axios": "^1.6.0",
+    "bottleneck": "^2.19.5",
     "compression": "^1.7.4",
     "cross-env": "^7.0.3",
     "eslint": "^8.52.0",

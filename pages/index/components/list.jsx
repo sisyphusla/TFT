@@ -1,10 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './list.scss'
-import challenger from '../assets/challenger.webp'
-import master from '../assets/master.webp'
-import grandmaster from '../assets/grandmaster.webp'
 import Loading from './loading'
+import challenger from '../assets/challenger.webp'
+import grandmaster from '../assets/grandmaster.webp'
+import master from '../assets/master.webp'
+import diamond from '../assets/diamond.webp'
+import emerald from '../assets/emerald.webp'
+import platinum from '../assets/platinum.webp'
+import gold from '../assets/gold.webp'
+import silver from '../assets/silver.webp'
+import bronze from '../assets/bronze.webp'
+import iron from '../assets/iron.webp'
+import unrank from '../assets/unrank.webp'
 
 
 
@@ -18,8 +26,20 @@ function renderTierImage(tier) {
       return <img src={master} alt="master" />;
     case 'DIAMOND':
       return <img src={diamond} alt="diamond" />;
+    case 'EMERALD':
+      return <img src={emerald} alt="emerald" />;
+    case 'PLATINUM':
+      return <img src={platinum} alt="platinum" />;
+    case 'GOLD':
+      return <img src={gold} alt="gold" />;
+    case 'SILVER':
+      return <img src={silver} alt="silver" />;
+    case 'BRONZE':
+      return <img src={bronze} alt="bronze" />;
+    case 'IRON':
+      return <img src={iron} alt="iron" />;
     default:
-      return <span>{tier}</span>;
+      return <img src={unrank} alt="unrank" />;
   }
 }
 
@@ -72,9 +92,9 @@ function List() {
   return (
     <div className='container'>
       {Object.keys(summonerData).map((teamName) => {
-        // 計算該team的總分數，但排除 "tier" 為 "DIAMOND" 的玩家
+        // 計算該team的總分數，但排除大師以下玩家
         const totalPoints = (summonerData[teamName] || []).reduce((sum, member) => {
-          if (member.tier !== 'DIAMOND') {
+          if (['CHALLENGER', 'GRANDMASTER', 'MASTER'].includes(member.tier)) {
             return sum + (member.leaguePoints || 0);
           }
           return sum;
