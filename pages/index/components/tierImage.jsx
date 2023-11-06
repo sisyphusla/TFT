@@ -1,6 +1,4 @@
 import React from 'react';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import 'react-lazy-load-image-component/src/effects/blur.css';
 import challenger from '../assets/challenger.webp';
 import grandmaster from '../assets/grandmaster.webp';
 import master from '../assets/master.webp';
@@ -12,6 +10,8 @@ import silver from '../assets/silver.webp';
 import bronze from '../assets/bronze.webp';
 import iron from '../assets/iron.webp';
 import unrank from '../assets/unrank.webp';
+
+
 
 
 const tierImages = {
@@ -30,10 +30,9 @@ const tierImages = {
 
 const TierImage = ({ tier, name }) => (
   <a href={`https://tactics.tools/player/TW/${name}`} target="_blank" rel="noopener noreferrer">
-    <LazyLoadImage
+    <img
       src={tierImages[tier] || tierImages['UNRANK']}
       alt={tier ? tier.toLowerCase() : 'unrank'}
-      effect="blur"
     />
   </a>
 );

@@ -22,8 +22,10 @@ export default async function handler(req, res) {
     return;
   }
 
-  const { body, statusCode, contentType } = httpResponse;
+  const { body, statusCode, headers } = httpResponse;
   res.statusCode = statusCode;
-  res.setHeader('content-type', contentType);
+  for (const [key, value] of Object.entries(headers)) {
+    res.setHeader(key, value);
+  }
   res.end(body);
 }
