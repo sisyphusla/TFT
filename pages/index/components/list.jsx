@@ -1,5 +1,5 @@
 import React from 'react';
-import './list.scss'
+import '../style/list.scss'
 import Loading from './loading'
 import TierImage from './tierImage'
 import useSummonerData from '../hooks/useSummonerData';

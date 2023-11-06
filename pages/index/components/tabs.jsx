@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ProPlayer from './porplayer'
 import List from './list'
-import './tabs.scss'
+import '../style/tabs.scss'
 
 function TabsComponent() {
   const [activeTab, setActiveTab] = useState('A');

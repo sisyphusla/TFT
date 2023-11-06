@@ -1,5 +1,5 @@
 import React from 'react';
-import './porplayer.scss'
+import '../style/porplayer.scss'
 import useProPlayers from '../hooks/useProPlayers';
 import Loading from './loading'
 import TierImage from './tierImage'
@@ -31,7 +31,7 @@ function ProPlayer() {
               <tr key={index}>
                 <td>{index + 1}</td>
                 <td>{player.summonerName}</td>
-                <td><TierImage tier={player.tier} /></td>
+                <td><TierImage tier={player.tier} name={player.summonerName} /></td>
                 <td>{player.leaguePoints}</td>
                 <td>{player.wins}</td>
                 <td>{player.wins + player.losses}</td>
