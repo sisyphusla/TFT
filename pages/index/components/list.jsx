@@ -1,55 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React from 'react';
 import './list.scss'
-
-
 import Loading from './loading'
 import TierImage from './tierImage'
+import useSummonerData from '../hooks/useSummonerData';
+import useLiveStreamers from '../hooks/useLiveStreamers';
 
 
 
 function List() {
-  const [summonerData, setSummonerData] = useState([]);
-  const [liveStreamers, setLiveStreamers] = useState([]);
-  const [loading, setLoading] = useState(true);
 
+  const api = import.meta.env.VITE_SECRET_KEY;
+  const { summonerData, loading } = useSummonerData(api);
+  const liveStreamers = useLiveStreamers(api);
 
-  useEffect(() => {
-    const api = import.meta.env.VITE_SECRET_KEY;
-    const fetchSummonerData = async () => {
-      try {
-        const response = await axios.get('/api/fetchData', {
-          headers: { 'x-api-key': api },
-        });
-        setSummonerData(response.data);
-        setLoading(false);
-      } catch (error) {
-        console.error('Error fetching summoner data:', error);
-      }
-    };
-
-
-    const fetchLiveData = async () => {
-      try {
-        const response = await axios.get('/api/fetchTwitchLive', {
-          headers: { 'x-api-key': api },
-        });
-        const liveNames = response.data.filter(item => item && item.streamerName)
-          .map(item => item.streamerName);
-        setLiveStreamers(liveNames);
-      } catch (error) {
-        console.error('Error fetching live stream data:', error);
-      }
-    };
-
-
-    fetchSummonerData();
-    fetchLiveData();
-  }, []);
-
-  if (loading) {
-    return <Loading />
-  }
+  if (loading) { return <Loading /> }
 
   return (
     <div className='container'>

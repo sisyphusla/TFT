@@ -1,44 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React from 'react';
 import './porplayer.scss'
-
+import useProPlayers from '../hooks/useProPlayers';
 import Loading from './loading'
 import TierImage from './tierImage'
 
 
 
 function ProPlayer() {
-  const [players, setPlayers] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const api = import.meta.env.VITE_SECRET_KEY;
-        const response = await axios.get('/api/fetchTopPlayer', {
-          headers: {
-            'x-api-key': api,
-          },
-        });
-
-        const data = response.data;
-        setPlayers(data);
-        setLoading(false);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  if (loading) {
-    return (
-      <>
-        <Loading />
-      </>
-    );
-  }
+  const { players, loading, error } = useProPlayers();
+  if (loading) { return <Loading /> }
 
   return (
     <div className='proPlayer'>

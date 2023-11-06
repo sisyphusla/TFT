@@ -3,7 +3,7 @@ const https = require('https');
 const path = require('path');
 const JSON_PATH = path.join(__dirname, 'playerList.json');
 
-const API_KEY = 'RGAPI-1a100267-4dce-46cf-8547-6793fd95cda3';
+const API_KEY = '';
 const BASE_URL = `https://tw2.api.riotgames.com/tft/summoner/v1/summoners/by-name/`;
 
 function fetchId(name) {
