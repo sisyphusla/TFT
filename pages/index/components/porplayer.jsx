@@ -1,20 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './porplayer.scss'
-import grandmaster from '../assets/grandmaster.webp'
-import challenger from '../assets/challenger.webp'
-import Loading from './loading'
 
-function renderTierImage(tier) {
-  switch (tier) {
-    case 'CHALLENGER':
-      return <img src={challenger} alt="challenger" />;
-    case 'GRANDMASTER':
-      return <img src={grandmaster} alt="grandmaster" />;
-    default:
-      return <span>{tier}</span>;
-  }
-}
+import Loading from './loading'
+import TierImage from './tierImage'
+
+
 
 function ProPlayer() {
   const [players, setPlayers] = useState([]);
@@ -29,7 +20,7 @@ function ProPlayer() {
             'x-api-key': api,
           },
         });
-        // const response = await axios.get('src/components/ouou.json');
+
         const data = response.data;
         setPlayers(data);
         setLoading(false);
@@ -70,7 +61,7 @@ function ProPlayer() {
               <tr key={index}>
                 <td>{index + 1}</td>
                 <td>{player.summonerName}</td>
-                <td>{renderTierImage(player.tier)}</td>
+                <td><TierImage tier={player.tier} /></td>
                 <td>{player.leaguePoints}</td>
                 <td>{player.wins}</td>
                 <td>{player.wins + player.losses}</td>

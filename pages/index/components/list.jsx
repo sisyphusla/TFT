@@ -1,47 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './list.scss'
+
+
 import Loading from './loading'
-import challenger from '../assets/challenger.webp'
-import grandmaster from '../assets/grandmaster.webp'
-import master from '../assets/master.webp'
-import diamond from '../assets/diamond.webp'
-import emerald from '../assets/emerald.webp'
-import platinum from '../assets/platinum.webp'
-import gold from '../assets/gold.webp'
-import silver from '../assets/silver.webp'
-import bronze from '../assets/bronze.webp'
-import iron from '../assets/iron.webp'
-import unrank from '../assets/unrank.webp'
+import TierImage from './tierImage'
 
 
-
-function renderTierImage(tier) {
-  switch (tier) {
-    case 'CHALLENGER':
-      return <img src={challenger} alt="challenger" />;
-    case 'GRANDMASTER':
-      return <img src={grandmaster} alt="grandmaster" />;
-    case 'MASTER':
-      return <img src={master} alt="master" />;
-    case 'DIAMOND':
-      return <img src={diamond} alt="diamond" />;
-    case 'EMERALD':
-      return <img src={emerald} alt="emerald" />;
-    case 'PLATINUM':
-      return <img src={platinum} alt="platinum" />;
-    case 'GOLD':
-      return <img src={gold} alt="gold" />;
-    case 'SILVER':
-      return <img src={silver} alt="silver" />;
-    case 'BRONZE':
-      return <img src={bronze} alt="bronze" />;
-    case 'IRON':
-      return <img src={iron} alt="iron" />;
-    default:
-      return <img src={unrank} alt="unrank" />;
-  }
-}
 
 function List() {
   const [summonerData, setSummonerData] = useState([]);
@@ -114,7 +79,9 @@ function List() {
                       <button className='liveBtn'>LIVE</button>
                     </a>
                   </div>
-                  <div className="itemPic">{renderTierImage(member.tier)}</div>
+                  <div className="itemPic">
+                    <TierImage tier={member.tier} />
+                  </div>
                   <div className="itemPoint">
                     <span className="pointNumber">{member.leaguePoints}</span>
                   </div>
