@@ -28,12 +28,14 @@ const tierImages = {
   UNRANK: unrank,
 };
 
-const TierImage = ({ tier }) => (
-  <LazyLoadImage
-    src={tierImages[tier] || tierImages['UNRANK']}
-    alt={tier ? tier.toLowerCase() : 'unrank'}
-    effect="blur"
-  />
+const TierImage = ({ tier, name }) => (
+  <a href={`https://tactics.tools/player/TW/${name}`} target="_blank" rel="noopener noreferrer">
+    <LazyLoadImage
+      src={tierImages[tier] || tierImages['UNRANK']}
+      alt={tier ? tier.toLowerCase() : 'unrank'}
+      effect="blur"
+    />
+  </a>
 );
 
 export default TierImage;
