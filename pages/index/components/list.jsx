@@ -15,43 +15,40 @@ function List() {
 
 
   useEffect(() => {
+    const api = import.meta.env.VITE_SECRET_KEY;
     const fetchSummonerData = async () => {
       try {
-        const api = import.meta.env.VITE_SECRET_KEY;
-        const dataPromise = axios.get('/api/fetchData', {
-          headers: {
-            'x-api-key': api,
-          },
+        const response = await axios.get('/api/fetchData', {
+          headers: { 'x-api-key': api },
         });
-        const liveDataPromise = axios.get('/api/fetchTwitchLive', {
-          headers: {
-            'x-api-key': api,
-          },
-        });
-
-        const dataResponse = await dataPromise;
-        const data = dataResponse.data;
-        setSummonerData(data);
+        setSummonerData(response.data);
         setLoading(false);
-
-        const liveDataResponse = await liveDataPromise;
-        const liveData = liveDataResponse.data;
-        const liveNames = liveData.filter(item => item && item.streamerName).map((item) => item.streamerName);
-        setLiveStreamers(liveNames);
       } catch (error) {
         console.error('Error fetching summoner data:', error);
       }
     };
 
+
+    const fetchLiveData = async () => {
+      try {
+        const response = await axios.get('/api/fetchTwitchLive', {
+          headers: { 'x-api-key': api },
+        });
+        const liveNames = response.data.filter(item => item && item.streamerName)
+          .map(item => item.streamerName);
+        setLiveStreamers(liveNames);
+      } catch (error) {
+        console.error('Error fetching live stream data:', error);
+      }
+    };
+
+
     fetchSummonerData();
+    fetchLiveData();
   }, []);
 
   if (loading) {
-    return (
-      <>
-        <Loading />
-      </>
-    );
+    return <Loading />
   }
 
   return (
