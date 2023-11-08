@@ -33,6 +33,7 @@ export default async (req, res) => {
   const apiKey = process.env.VITE_API_KEY;
 
   try {
+    console.time('totalRequestTime');
     let allSummonerInfo = {};
     let countPerTenSecond = 0;
     let countPerTenMinutes = 0;
@@ -98,7 +99,7 @@ export default async (req, res) => {
     /* vercel的Cache-Control設置策略 */
     res.setHeader(
       'Cache-Control',
-      'max-age=0, s-maxage=60, stale-while-revalidate=60'
+      'max-age=0, s-maxage=120, stale-while-revalidate=120'
     );
     res.status(200).json(allSummonerInfo);
   } catch (error) {
