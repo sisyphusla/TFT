@@ -16,16 +16,16 @@ function TabsComponent() {
             台服S10分組衝分賽
           </h1>
         </button>
-        <button
+        {/* <button
           className={activeTab === 'B' ? 'active' : ''}
           onClick={() => setActiveTab('B')}>
           <h1>
             台服TFT天梯前五十排名
           </h1>
-        </button>
+        </button> */}
       </div>
       {activeTab === 'A' && <List />}
-      {activeTab === 'B' && <ProPlayer />}
+      {/* {activeTab === 'B' && <ProPlayer />} */}
     </div>
   );
 }

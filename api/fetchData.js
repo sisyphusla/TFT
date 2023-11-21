@@ -70,17 +70,47 @@ export default async (req, res) => {
               `https://tw2.api.riotgames.com/tft/league/v1/entries/by-summoner/${summonerId}?api_key=${apiKey}`
             )
             .then((response) => {
-              const data = response.data;
-              // 找到queueType為RANKED_TFT的物件避免撈到非rank的資料
-              const tftEntry =
-                data.find((entry) => entry.queueType === 'RANKED_TFT') || {};
-              const summonerInfo = {
-                summonerName: tftEntry.summonerName || player.name,
-                tier: tftEntry.tier || 'N/A',
-                leaguePoints: tftEntry.leaguePoints,
+              let summonerInfo = {
+                summonerName: player.name, // 從playerList.json中獲得
+                tier: 'N/A',
+                leaguePoints: 'N/A',
                 twitchId: player.twitchId,
+                status: 'Success',
               };
+
+              if (response.status === 200 || response.status === 304) {
+                const data = response.data;
+                const tftEntry =
+                  data.find((entry) => entry.queueType === 'RANKED_TFT') || {};
+                summonerInfo = {
+                  ...summonerInfo,
+                  summonerName: tftEntry.summonerName || player.name,
+                  tier: tftEntry.tier || 'N/A',
+                  leaguePoints: tftEntry.leaguePoints || 'N/A',
+                };
+              } else {
+                console.error(
+                  `Unexpected status code: ${response.status} for summonerId: ${summonerId}`
+                );
+                summonerInfo.status = 'Error';
+                summonerInfo.error = `Unexpected status code: ${response.status}`;
+              }
+
               allSummonerInfo[team][i] = summonerInfo;
+            })
+            .catch((error) => {
+              console.error(
+                `Error fetching data for summonerId: ${summonerId}`,
+                error
+              );
+              allSummonerInfo[team][i] = {
+                summonerName: player.name,
+                tier: 'N/A',
+                leaguePoints: 'N/A',
+                twitchId: player.twitchId,
+                status: 'Error',
+                error: 'Error fetching data',
+              };
             })
         );
 
