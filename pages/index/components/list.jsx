@@ -13,6 +13,7 @@ function List() {
   const { summonerData, loading } = useSummonerData(api);
   const liveStreamers = useLiveStreamers(api);
 
+
   if (loading) { return <Loading /> }
 
   return (
@@ -29,10 +30,13 @@ function List() {
         return (
           <div key={teamName} className="team">
             <h2 className='teamName'>{teamName}</h2>
+            <div className='totalPoint'>
+              總分：{totalPoints} LP
+            </div>
             <ul>
               {(summonerData[teamName] || []).map((member, index) => (
                 <li key={index} className="listItem">
-                  <div className="itemName">{member.summonerName}
+                  <div className="itemName">{member.nickName}
                   </div>
                   {/* 如果這個實況主正在直播，則顯示 "LIVE" 按鈕 */}
                   <div className={liveStreamers.includes(`${member.twitchId}`) ? 'liveBtnVisible' : 'liveBtnHidden'}>
@@ -49,9 +53,7 @@ function List() {
                 </li>
               ))}
             </ul>
-            <div className='totalPoint'>
-              總分：{totalPoints} LP
-            </div>
+
           </div>
         );
       })}

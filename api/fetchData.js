@@ -72,6 +72,7 @@ export default async (req, res) => {
             .then((response) => {
               let summonerInfo = {
                 summonerName: player.name, // 從playerList.json中獲得
+                nickName: player.nickName,
                 tier: 'N/A',
                 leaguePoints: 'N/A',
                 twitchId: player.twitchId,
@@ -88,6 +89,7 @@ export default async (req, res) => {
                   tier: tftEntry.tier || 'N/A',
                   leaguePoints: tftEntry.leaguePoints || 'N/A',
                 };
+                console.log(summonerInfo);
               } else {
                 console.error(
                   `Unexpected status code: ${response.status} for summonerId: ${summonerId}`
@@ -105,6 +107,7 @@ export default async (req, res) => {
               );
               allSummonerInfo[team][i] = {
                 summonerName: player.name,
+                nickName: player.nickName,
                 tier: 'N/A',
                 leaguePoints: 'N/A',
                 twitchId: player.twitchId,

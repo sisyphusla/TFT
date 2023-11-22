@@ -9,13 +9,15 @@ function TabsComponent() {
   return (
     <div className='tabsContainer'>
       <div className="tabs">
-        <button
+
+
+        {/* <button
           className={activeTab === 'A' ? 'active' : ''}
           onClick={() => setActiveTab('A')}>
           <h1>
             台服S10分組衝分賽
           </h1>
-        </button>
+        </button> */}
         {/* <button
           className={activeTab === 'B' ? 'active' : ''}
           onClick={() => setActiveTab('B')}>
