@@ -8,7 +8,6 @@
     "dev": "vite"
   },
   "dependencies": {
-    "@vercel/analytics": "^1.1.1",
     "@vercel/node": "^3.0.7",
     "axios": "^1.6.0",
     "bottleneck": "^2.19.5",
