@@ -87,7 +87,7 @@ export default async (req, res) => {
                   ...summonerInfo,
                   summonerName: tftEntry.summonerName || player.name,
                   tier: tftEntry.tier || 'N/A',
-                  leaguePoints: tftEntry.leaguePoints || 'N/A',
+                  leaguePoints: tftEntry.leaguePoints,
                 };
                 console.log(summonerInfo);
               } else {
