@@ -1,11 +1,6 @@
-.listContainer {
-  
+.listContainer {  
   flex-wrap: wrap; /* 允許子元素換行 */
-  // margin-bottom: 5vh;
-  // width: 100%;
-
-
-  @media only screen and (max-width: 1440px) {
+  @media only screen and (max-width: 1430px) {
     .team {
       flex-basis:30%; 
       margin: 1vh auto;
@@ -13,69 +8,19 @@
   }
   @media only screen and (max-width: 1200px) {
     .team {
-      flex-basis:40%; 
+      flex-basis:45%; 
       margin: 1vh auto;
     }
   }
-
-
   @media only screen and (max-width: 768px) {
     flex-direction: column; /* 讓.team從上到下排列 */
   }
-
   .team {
     width: 17.5%;
-    // height: 100%;
-    // margin: 2vh;
-
-
-
     @media only screen and (max-width: 768px) {
-      width: 75%; 
+      width: 90%; 
       margin-left: auto;
       margin-right: auto;
-    }
-
-    
-
-    ul {
-      list-style-type: none;
-      // height: 100%;
-      // width: 100%;
-      // padding-left: 0;
-
-      .listItem {
-        text-align: left;
-        margin: 5px 0 5px 0;
-        padding: 5px;
-        border: 1px black solid;
-        border-radius: 5px;
-        height: 11%;
-        display: flex;
-        align-items: center; // 水平居中
-        justify-content: center;
-        width: 100%;
-        background: #e7e7ad;
-        
-        
-        .itemPic{
-          img{
-            height: 50px;
-            width: 50px;
-  
-            @media only screen and (max-width: 768px) {
-              height: 40px;
-              width: 40px;
-            }
-  
-            @media only screen and (max-width: 480px) {
-              height: 40px;
-              width: 40px;
-            }
-          }
-        } 
-        
-      }
     }
   }
 }

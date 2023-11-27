@@ -87,4 +87,5 @@ body, html, #root {
 .app {
   display: flex;
   flex-direction: column;
+  
 }
