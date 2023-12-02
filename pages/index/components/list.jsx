@@ -15,7 +15,7 @@ function List() {
   }
 
   return (
-    <div className='flex justify-center mb-[5vh] w-full listContainer'>
+    <div className='flex justify-center mb-[5vh] w-[95%] m-auto rounded-xl shadow-bg-3d listContainer bg-slate-50/20'>
       {Object.keys(summonerData).map((teamName) => {
         const totalPoints = (summonerData[teamName] || []).reduce((sum, member) => {
           if (['CHALLENGER', 'GRANDMASTER', 'MASTER'].includes(member.tier)) {
@@ -32,14 +32,14 @@ function List() {
             </div>
             <ul className='w-[100%] m-auto'>
               {(summonerData[teamName] || []).map((member, index) => (
-                <li key={index} className="shadow-md text-left m-[1vh] p-2 border border-black rounded-md h-[9vh] flex items-center justify-center w-full bg-[#e7e7ad] leading-5">
+                <li key={index} className="shadow-3d text-left m-[1vh] p-2 rounded-md h-[9vh] flex items-center justify-center w-full bg-[#c6d9ec] leading-5">
                   <div className="w-1/2 text-[1.1rem] leading-5 ">{member.nickName}</div>
                   <div className={liveStreamers.includes(`${member.twitchId}`) ? 'visible' : 'invisible'}>
                     <a href={`https://www.twitch.tv/${member.twitchId}`} target="_blank" rel="noopener noreferrer">
-                      <button className='animate-heartbeat bg-red-500 text-white font-bold border-none rounded-sm m-2 p-[2px_4px] cursor-pointer'>LIVE</button>
+                      <button className='animate-heartbeat bg-red-500 text-white font-bold border-none rounded-sm m-2 p-[2px_4px] cursor-pointer shadow-btn-3d'>LIVE</button>
                     </a>
                   </div>
-                  <div className="itemPic w-[50px]">
+                  <div className="itemPic w-[50px] ">
                     <TierImage tier={member.tier} name={member.summonerName} />
                   </div>
                   <div className="w-[25%] text-center">

@@ -33,7 +33,6 @@ export default async (req, res) => {
   const apiKey = process.env.VITE_API_KEY;
 
   try {
-    console.time('totalRequestTime');
     let allSummonerInfo = {};
     let countPerTenSecond = 0;
     let countPerTenMinutes = 0;
@@ -89,7 +88,6 @@ export default async (req, res) => {
                   tier: tftEntry.tier || 'N/A',
                   leaguePoints: tftEntry.leaguePoints,
                 };
-                console.log(summonerInfo);
               } else {
                 console.error(
                   `Unexpected status code: ${response.status} for summonerId: ${summonerId}`

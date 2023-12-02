@@ -8,9 +8,11 @@ let cacheTimestamp = null;
 const getStreamerStatus = async (STREAMER_NAME) => {
   const CLIENT_ID = process.env.VITE_TWITCH_CLIENT_ID;
   const OAUTH_TOKEN = process.env.VITE_TWITCH_OAUTH_TOKEN;
+
   if (STREAMER_NAME === '#') {
     return null;
   }
+
   try {
     const response = await axios.get(
       `https://api.twitch.tv/helix/streams?user_login=${STREAMER_NAME}`,
@@ -30,7 +32,8 @@ const getStreamerStatus = async (STREAMER_NAME) => {
       };
     }
   } catch (error) {
-    console.error('Error:', error);
+    console.error('Error fetching streamer status:', error);
+    throw error; // 抛出错误，以便在调用时进行处理
   }
 };
 
@@ -56,37 +59,27 @@ export default async (req, res) => {
   const playerList = JSON.parse(jsonString);
 
   let allPromises = [];
-  let currentBatch = [];
-
-  const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
   for (const team in playerList) {
     const teamMembers = playerList[team];
-    for (const member of teamMembers) {
+    teamMembers.forEach((member) => {
       const STREAMER_NAME = member.twitchId;
       if (STREAMER_NAME !== '#') {
-        currentBatch.push(getStreamerStatus(STREAMER_NAME));
+        allPromises.push(getStreamerStatus(STREAMER_NAME));
       }
-      if (currentBatch.length >= 30) {
-        allPromises.push(Promise.all(currentBatch));
-        await sleep(60000);
-        currentBatch = [];
-      }
-    }
-  }
-
-  if (currentBatch.length > 0) {
-    allPromises.push(Promise.all(currentBatch));
+    });
   }
 
   try {
-    const results = await Promise.all(allPromises);
-    const flatResults = results.flat().filter((result) => result !== undefined);
+    const results = await Promise.allSettled(allPromises);
+    const flatResults = results
+      .filter(
+        (result) => result.status === 'fulfilled' && result.value !== null
+      )
+      .map((result) => result.value);
     cache = flatResults;
     cacheTimestamp = now;
 
-    /* https://vercel.com/docs/functions/serverless-functions/edge-caching */
-    /* vercel的Cache-Control設置策略 */
     res.setHeader(
       'Cache-Control',
       'max-age=0, s-maxage=120, stale-while-revalidate=120'
@@ -94,7 +87,7 @@ export default async (req, res) => {
 
     res.status(200).send(flatResults);
   } catch (error) {
-    console.error('Error:', error);
+    console.error('Error processing requests:', error);
     res.status(500).send('Internal Server Error');
   }
 };
