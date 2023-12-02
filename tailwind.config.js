@@ -17,7 +17,7 @@ module.exports = {
     },
     extend: {
       backgroundImage: {
-        'hero-pattern': "url('/pages/index/assets/set10.png')",
+        'hero-pattern': "url('/pages/index/assets/set10.webp')",
       },
       boxShadow: {
         '3d': '-3px -3px 5px rgba(0, 0, 0, 0.6), inset -1px -1px 10px rgba(0, 0, 0, 0.5)',
@@ -78,18 +78,7 @@ module.exports = {
         },
         heartbeat: {
           '0%, 100%': { transform: 'scale(1)' },
-          '50%': { transform: 'scale(1.1)' },
-        },
-        'gradient-flow': {
-          '0%': {
-            backgroundPosition: '0 50%',
-          },
-          '50%': {
-            backgroundPosition: '100% 50%',
-          },
-          '100%': {
-            backgroundPosition: '0 50%',
-          },
+          '50%': { transform: 'scale(1.05)' },
         },
       },
       animation: {

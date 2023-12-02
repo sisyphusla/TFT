@@ -35,14 +35,14 @@ function List() {
             </div>
             <ul className='w-[100%] m-auto'>
               {(summonerData[teamName] || []).map((member, index) => (
-                <li key={index} className="shadow-3d text-left m-[1vh] p-2 rounded-md h-[9vh] flex items-center justify-center w-full bg-[#c6d9ec] leading-5">
-                  <div className="w-1/2 text-[1.1rem] leading-5 ">{member.nickName}</div>
-                  <div className={liveStreamers.includes(`${member.twitchId}`) ? 'visible' : 'invisible'}>
+                <li key={index} className="shadow-3d text-left m-[1vh] p-2 rounded-md h-[9vh] flex items-center justify-center w-[100%] bg-[#c6d9ec] leading-5">
+                  <div className="w-1/2 text-[1rem] leading-5 ">{member.nickName}</div>
+                  <div className={liveStreamers.includes(`${member.twitchId}`) ? 'visible' : 'invisible '}>
                     <a href={`https://www.twitch.tv/${member.twitchId}`} target="_blank" rel="noopener noreferrer">
-                      <button className='animate-heartbeat bg-red-500 text-white font-bold border-none rounded-sm m-2 p-[2px_4px] cursor-pointer shadow-btn-3d'>LIVE</button>
+                      <button className='animate-heartbeat bg-red-500 text-white font-bold border-none rounded-sm m-1 p-[1px_3px] cursor-pointer shadow-btn-3d'>LIVE</button>
                     </a>
                   </div>
-                  <div className="itemPic w-[50px] ">
+                  <div className="itemPic w-[50px]">
                     <TierImage tier={member.tier} name={member.summonerName} />
                   </div>
                   <div className="w-[25%] text-center">
