@@ -20,9 +20,9 @@ module.exports = {
         'hero-pattern': "url('/pages/index/assets/set10.png')",
       },
       boxShadow: {
-        '3d': '-3px -3px 5px rgba(0, 0, 0, 0.6)',
+        '3d': '-3px -3px 5px rgba(0, 0, 0, 0.6), inset -1px -1px 10px rgba(0, 0, 0, 0.5)',
         'bg-3d':
-          '-3px -3px 5px rgba(0, 0, 0, 0.6) ,3px 3px 5px rgba(0, 0, 0, 0.6)',
+          '-3px -3px 5px rgba(0, 0, 0, 0.6), 3px 3px 5px rgba(0, 0, 0, 0.6)',
         'btn-3d': '-1px -1px 5px rgba(0, 0, 0, 0.6)',
       },
       colors: {

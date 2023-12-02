@@ -13,6 +13,9 @@ function List() {
   if (loading) {
     return <Loading />
   }
+  const style = {
+    boxShadow: 'inset 0px 0px 10px rgba(0, 0, 0, 0.5)'
+  };
 
   return (
     <div className='flex justify-center mb-[5vh] w-[95%] m-auto rounded-xl shadow-bg-3d listContainer bg-slate-50/20'>
