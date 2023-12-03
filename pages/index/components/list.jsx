@@ -18,7 +18,7 @@ function List() {
   };
 
   return (
-    <div className='flex justify-center mb-[5vh] w-[95%] m-auto rounded-xl shadow-bg-3d listContainer bg-slate-50/20'>
+    <div className='flex justify-center mb-[5vh] w-[100%] m-auto rounded-xl shadow-bg-3d listContainer bg-slate-50/20'>
       {Object.keys(summonerData).map((teamName) => {
         const totalPoints = (summonerData[teamName] || []).reduce((sum, member) => {
           if (['CHALLENGER', 'GRANDMASTER', 'MASTER'].includes(member.tier)) {
