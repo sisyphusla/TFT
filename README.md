@@ -4,7 +4,7 @@
 
 </div>
 
-### 🌐 Link: [https://tftrank.vercel.app/](https://tftrank-git-main-sisyphusla.vercel.app/)
+### 🌐 Link: [https://tftrank-git-main-sisyphusla.vercel.app/](https://tftrank-git-main-sisyphusla.vercel.app/)
 
 ### 🧩 使用工具
 
