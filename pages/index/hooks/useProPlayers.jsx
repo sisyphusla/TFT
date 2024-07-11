@@ -9,12 +9,7 @@ const useProPlayers = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const api = import.meta.env.VITE_SECRET_KEY;
-        const response = await axios.get('/api/fetchTopPlayer', {
-          headers: {
-            'x-api-key': api,
-          },
-        });
+        const response = await axios.get('/api/fetchTopPlayer');
 
         const data = response.data;
         setPlayers(data);

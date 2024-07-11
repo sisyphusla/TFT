@@ -3,15 +3,15 @@
   flex-direction: column;
   padding: 0 20px; // 添加邊距使其在小裝置上更具可讀性
 
-  @media (min-width: 768px) { // 平板電腦尺寸
-    padding: 0 40px;
-  }
+  // @media (min-width: 768px) { // 平板電腦尺寸
+  //   padding: 0 40px;
+  // }
 
-  @media (min-width: 1400px) { // 桌面尺寸
-    // max-width: 1140px;
-    margin: auto;
-    padding: 0; // 在大屏幕上移除邊距
-  }
+  // @media (min-width: 1400px) { // 桌面尺寸
+  //   // max-width: 1140px;
+  //   margin: auto;
+  //   padding: 0; // 在大屏幕上移除邊距
+  // }
 
   .tabs {
     display: flex;
