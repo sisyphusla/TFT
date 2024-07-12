@@ -4,8 +4,7 @@
 
 </div>
 
-### 🌐 Link: [https://tftrank-git-main-sisyphusla.vercel.app/](https://tftrank-git-main-sisyphusla.vercel.app/)
-
+### 🌐 Link: [https://tftrank.vercel.app/](https://tftrank.vercel.app/)
 ### 🧩 使用工具
 
 [![built with](https://skillicons.dev/icons?i=js,html,scss,react,vite,vercel)](https://skillicons.dev)
