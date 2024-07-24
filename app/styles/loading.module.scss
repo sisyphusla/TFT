@@ -15,10 +15,11 @@
   }
 }
 
-ul,
-li {
-  list-style: none;
+.localClass ul,
+.localClass li {
+    list-style: none;
 }
+
 .loadContainer{
   min-height: 80vh;
   margin: auto;
