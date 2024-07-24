@@ -1,11 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: ['class'],
   content: [
-    './pages/**/*.{js,jsx}',
-    './components/**/*.{js,jsx}',
-    './app/**/*.{js,jsx}',
-    './src/**/*.{js,jsx}',
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     container: {
@@ -16,21 +13,32 @@ module.exports = {
       },
     },
     extend: {
-      backgroundImage: {
-        'hero-pattern': "url('/pages/index/assets/set10.webp')",
-      },
-      boxShadow: {
-        '3d': '-3px -3px 5px rgba(0, 0, 0, 0.6), inset -1px -1px 10px rgba(0, 0, 0, 0.5)',
-        'bg-3d':
-          '-3px -3px 5px rgba(0, 0, 0, 0.6), 3px 3px 5px rgba(0, 0, 0, 0.6)',
-        'btn-3d': '-1px -1px 5px rgba(0, 0, 0, 0.6)',
-      },
       colors: {
+        // 自定義顏色
         'gradient-light-blue': '#cee6fd',
         'gradient-dark-blue': '#a1c2e3',
-        border: 'hsl(var(--border))',
-        input: 'hsl(var(--input))',
-        ring: 'hsl(var(--ring))',
+        yellow: {
+          light: '#FFFFCC',
+          DEFAULT: '#FFFF00',
+          dark: '#CCCC00',
+        },
+        gray: {
+          light: '#F2F2F2',
+          DEFAULT: '#CCCCCC',
+          dark: '#999999',
+        },
+        indigo: {
+          50: '#EEF2FF',
+          100: '#E0E7FF',
+          200: '#C7D2FE',
+          300: '#A5B4FC',
+          400: '#818CF8',
+          500: '#6366F1',
+          600: '#4F46E5',
+          700: '#4338CA',
+          800: '#3730A3',
+          900: '#312E81',
+        },
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         primary: {
@@ -62,32 +70,66 @@ module.exports = {
           foreground: 'hsl(var(--card-foreground))',
         },
       },
+      boxShadow: {
+        card: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+        button:
+          '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
+      },
       borderRadius: {
-        lg: 'var(--radius)',
-        md: 'calc(var(--radius) - 2px)',
-        sm: 'calc(var(--radius) - 4px)',
+        xl: '1rem',
+        '2xl': '1.5rem',
+      },
+      fontFamily: {
+        sans: ['Noto Sans TC', 'sans-serif'],
+        display: ['Poppins', 'sans-serif'],
+      },
+      fontSize: {
+        xs: '0.75rem',
+        sm: '0.875rem',
+        base: '1rem',
+        lg: '1.125rem',
+        xl: '1.25rem',
+        '2xl': '1.5rem',
+        '3xl': '1.875rem',
+        '4xl': '2.25rem',
+        '5xl': '3rem',
       },
       keyframes: {
-        'accordion-down': {
-          from: { height: 0 },
-          to: { height: 'var(--radix-accordion-content-height)' },
+        pulse: {
+          '0%, 100%': { opacity: 1 },
+          '50%': { opacity: 0.5 },
         },
-        'accordion-up': {
-          from: { height: 'var(--radix-accordion-content-height)' },
-          to: { height: 0 },
+        fadeIn: {
+          '0%': { opacity: 0 },
+          '100%': { opacity: 1 },
         },
-        heartbeat: {
-          '0%, 100%': { transform: 'scale(1)' },
-          '50%': { transform: 'scale(1.05)' },
+        slideUp: {
+          '0%': { transform: 'translateY(20px)', opacity: 0 },
+          '100%': { transform: 'translateY(0)', opacity: 1 },
         },
       },
       animation: {
-        'accordion-down': 'accordion-down 0.2s ease-out',
-        'accordion-up': 'accordion-up 0.2s ease-out',
-        heartbeat: 'heartbeat 2s infinite',
-        'gradient-flow': 'gradient-flow 3s ease infinite',
+        pulse: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        fadeIn: 'fadeIn 0.5s ease-out',
+        slideUp: 'slideUp 0.5s ease-out',
       },
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [
+    function ({ addUtilities }) {
+      const newUtilities = {
+        '.text-shadow': {
+          textShadow: '0 2px 4px rgba(0,0,0,0.1)',
+        },
+        '.text-shadow-md': {
+          textShadow: '0 4px 8px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.08)',
+        },
+        '.text-shadow-lg': {
+          textShadow:
+            '0 15px 30px rgba(0,0,0,0.11), 0 5px 15px rgba(0,0,0,0.08)',
+        },
+      };
+      addUtilities(newUtilities);
+    },
+  ],
 };

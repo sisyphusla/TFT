@@ -9,11 +9,6 @@ let allSummonerInfoCache = null;
 let lastFetched = null;
 
 export default async (req, res) => {
-  const apiSecret = req.headers['x-api-key'];
-  if (!apiSecret || apiSecret !== process.env.VITE_SECRET_KEY) {
-    return res.status(401).send('Unauthorized');
-  }
-
   // 檢查是否有緩存
   const now = Date.now();
   if (allSummonerInfoCache && now - lastFetched < 120000) {
@@ -71,7 +66,6 @@ export default async (req, res) => {
             .then((response) => {
               let summonerInfo = {
                 summonerName: player.name, // 從playerList.json中獲得
-                nickName: player.nickName,
                 tier: 'N/A',
                 leaguePoints: 'N/A',
                 twitchId: player.twitchId,
@@ -84,7 +78,7 @@ export default async (req, res) => {
                   data.find((entry) => entry.queueType === 'RANKED_TFT') || {};
                 summonerInfo = {
                   ...summonerInfo,
-                  summonerName: tftEntry.summonerName || player.name,
+                  summonerName: player.name,
                   tier: tftEntry.tier || 'N/A',
                   leaguePoints: tftEntry.leaguePoints,
                 };
@@ -105,7 +99,6 @@ export default async (req, res) => {
               );
               allSummonerInfo[team][i] = {
                 summonerName: player.name,
-                nickName: player.nickName,
                 tier: 'N/A',
                 leaguePoints: 'N/A',
                 twitchId: player.twitchId,
