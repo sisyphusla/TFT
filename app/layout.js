@@ -16,7 +16,7 @@ export default function RootLayout({ children }) {
           rel="stylesheet"
         />
       </head>
-      <body className="h-full m-0 bg-black text-white">
+      <body className="h-full m-0 text-white">
         <div className="flex flex-col min-h-screen">
           {/* <Header /> */}
           <main className="flex-grow">{children}</main>
