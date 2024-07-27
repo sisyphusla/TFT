@@ -38,10 +38,30 @@ const MemberItem = React.memo(({ member, data }) => (
 ));
 
 const TeamItem = React.memo(({ teamName, members, summonerData }) => {
+  const sortedMembers = useMemo(() => {
+    if (!summonerData || !summonerData[teamName]) return members;
+
+    const highTierMembers = [];
+    const otherMembers = [];
+
+    members.forEach(member => {
+      const data = summonerData[teamName].find(m => m.summonerName === member);
+      if (data && HIGH_TIERS.includes(data.tier)) {
+        highTierMembers.push({ member, leaguePoints: parseInt(data.leaguePoints) || 0 });
+      } else {
+        otherMembers.push(member);
+      }
+    });
+
+    highTierMembers.sort((a, b) => b.leaguePoints - a.leaguePoints);
+
+    return [...highTierMembers.map(m => m.member), ...otherMembers];
+  }, [teamName, members, summonerData]);
+
   const totalPoints = useMemo(() => {
-    if (!summonerData) return 0;
+    if (!summonerData || !summonerData[teamName]) return 0;
     return members.reduce((sum, member) => {
-      const data = summonerData[teamName]?.find(m => m.summonerName === member);
+      const data = summonerData[teamName].find(m => m.summonerName === member);
       return HIGH_TIERS.includes(data?.tier) ? sum + (parseInt(data?.leaguePoints) || 0) : sum;
     }, 0);
   }, [teamName, members, summonerData]);
@@ -52,17 +72,17 @@ const TeamItem = React.memo(({ teamName, members, summonerData }) => {
         <CardTitle className="flex justify-between items-center text-sm sm:text-base">
           <span>{teamName}</span>
           <Badge variant="default" className="text-xs sm:text-sm">
-            總分：{summonerData ? `${totalPoints} LP` : <Skeleton className="h-4 w-16 inline-block" />}
+            總分：{summonerData && summonerData[teamName] ? `${totalPoints} LP` : <Skeleton className="h-4 w-16 inline-block" />}
           </Badge>
         </CardTitle>
       </CardHeader>
       <CardContent>
         <div className="space-y-2">
-          {members.map((member, memberIndex) => (
+          {sortedMembers.map((member, memberIndex) => (
             <MemberItem
               key={memberIndex}
               member={member}
-              data={summonerData ? summonerData[teamName]?.find(m => m.summonerName === member) : null}
+              data={summonerData && summonerData[teamName] ? summonerData[teamName].find(m => m.summonerName === member) : null}
             />
           ))}
         </div>
@@ -79,8 +99,8 @@ function SummonerLeaderboard() {
       .map(([teamName, members]) => ({
         teamName,
         members,
-        totalPoints: summonerData ? members.reduce((sum, member) => {
-          const data = summonerData[teamName]?.find(m => m.summonerName === member);
+        totalPoints: summonerData && summonerData[teamName] ? members.reduce((sum, member) => {
+          const data = summonerData[teamName].find(m => m.summonerName === member);
           return HIGH_TIERS.includes(data?.tier) ? sum + (parseInt(data?.leaguePoints) || 0) : sum;
         }, 0) : 0
       }))
@@ -91,9 +111,19 @@ function SummonerLeaderboard() {
     <div className="container mx-auto px-2 sm:px-4 py-4 sm:py-8">
       <h1 className="text-2xl sm:text-3xl font-bold text-center mb-4 sm:mb-8 text-black">台服 S12 分組衝分賽</h1>
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
+        initial={{ opacity: 0, scale: 0.9, y: 50 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        transition={{
+          duration: 0.8,
+          delay: 0.2,
+          ease: [0, 0.71, 0.2, 1.01],
+          scale: {
+            type: "spring",
+            damping: 5,
+            stiffness: 100,
+            restDelta: 0.001
+          }
+        }}
         className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 sm:gap-4"
       >
         {sortedTeams.map((team) => (
