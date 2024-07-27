@@ -13,7 +13,8 @@ export const metadata = {
   author: 'aple83709@gmail.com',
   openGraph: {
     title: 'S12 分組衝分賽',
-    description: '台服聯盟戰棋S12季初衝分賽',
+    description:
+      '本次比賽為非官方舉辦之台服聯盟戰棋S12季初衝分賽。由花輪同學、Greentea喝綠茶、絕世拿鐵、terry、白龍1五位頂尖棋手領軍。旨在提供各方好手競技舞台，活絡社群競賽風氣，培養觀賽群眾。',
     type: 'website',
     url: 'https://tftrank.vercel.app/',
     image: 'https://tftrank.vercel.app/api/og',
