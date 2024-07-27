@@ -16,7 +16,7 @@ export const metadata = {
     description: '台服聯盟戰棋S12季初衝分賽',
     type: 'website',
     url: 'https://tftrank.vercel.app/',
-    image: 'https://您的網站URL.com/og-image.jpg',
+    image: 'https://tftrank.vercel.app/api/og',
   },
 };
 
@@ -253,6 +253,7 @@ export default function RootLayout({ children }) {
           href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Poppins:wght@400;500;700&display=swap"
           rel="stylesheet"
         />
+        <link rel="icon" href="/favicon.ico" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <script
           type="application/ld+json"
