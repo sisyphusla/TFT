@@ -24,14 +24,16 @@ const MemberItem = React.memo(({ member, data }) => (
       {data ? <TierImage tier={data.tier} /> : <Skeleton className="h-full w-full rounded-full" />}
     </Avatar>
     <div className="flex-1">
-      <span className="text-sm font-medium">{member}</span>
-      <span className="block text-xs text-muted-foreground">
-        {data ? data.tier : <Skeleton className="h-4 w-16 inline-block" />}
-      </span>
+      <h3 className="text-sm font-medium">{member}</h3>
     </div>
-    <Badge variant="secondary">
-      {data ? `${data.leaguePoints} LP` : <Skeleton className="h-4 w-12" />}
-    </Badge>
+    <div className="min-w-[0px] text-right">
+      <Badge
+        variant="secondary"
+        className="w-full inline-block font-mono"
+      >
+        {data ? `${data.leaguePoints} LP` : <Skeleton className="h-4 w-full" />}
+      </Badge>
+    </div>
   </div>
 ));
 
