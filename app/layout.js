@@ -17,7 +17,13 @@ export const metadata = {
       '本次比賽為非官方舉辦之台服聯盟戰棋S12季初衝分賽。由花輪同學、Greentea喝綠茶、絕世拿鐵、terry、白龍1五位頂尖棋手領軍。旨在提供各方好手競技舞台，活絡社群競賽風氣，培養觀賽群眾。',
     type: 'website',
     url: 'https://tftrank.vercel.app/',
-    image: 'https://tftrank.vercel.app/api/og',
+    images: [
+      {
+        url: 'https://tftrank.vercel.app/api/og',
+        width: 1200,
+        height: 630,
+      },
+    ],
   },
 };
 
@@ -256,6 +262,11 @@ export default function RootLayout({ children }) {
         />
         <link rel="icon" href="/favicon.ico" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta property="og:image" content="https://tftrank.vercel.app/api/og" />
+        <meta
+          name="twitter:image"
+          content="https://tftrank.vercel.app/api/og"
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
