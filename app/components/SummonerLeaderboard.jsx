@@ -1,8 +1,9 @@
 'use client';
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import TierImage from './TierImage';
 import useSummonerData from '../hooks/useSummonerData';
+import useLiveStreamers from '../hooks/useLiveStreamers';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Avatar } from "@/components/ui/avatar";
@@ -11,33 +12,54 @@ import { Skeleton } from "@/components/ui/skeleton";
 const HIGH_TIERS = ['CHALLENGER', 'GRANDMASTER', 'MASTER'];
 
 const INITIAL_TEAM_DATA = {
-  "白龍隊": ["白龍1", "AQ1H", "河川先子", "電競損手", "依居居", "二等兵", "WHAT CAN I DO", "花花 毛毛 泡泡"],
-  "拿鐵隊": ["Latte喝拿鐵", "不能沒有你", "天晴Haruru", "懷疑Owo小熊", "請給我一個面子Ð", "樺樺98", "Cute SUP O v O b", "罵慧 MurrayTFT", "白帶1"],
-  "花輪隊": ["花輪同學", "K寶寶生氣了", "鐵之硬沼", "Ajoe1231", "blackbigbig", "我只會打星海", "Feelzacman", "爆豪1"],
   "TERRY隊": ["terrytft", "Fallhalp", "Wingnism", "Phantasm殺手", "摘星旅人", "2017FIFA", "貝貝豬頭皮", "loveactually"],
-  "綠茶隊": ["Greentea喝綠茶", "小娜啊", "摸雞MoGG", "偶爾愛你", "夏沫沫ÜÜ", "妳家祖祠留給你住", "地瓜QQBALL", "一窩六口"]
+  "綠茶隊": ["Greentea喝綠茶", "小娜啊", "摸雞MoGG", "偶爾愛你", "I3ubb1e", "妳家祖祠留給你住", "地瓜QQBALL", "一窩六口"],
+  "白龍隊": ["白龍1", "AQ1H", "河川先子", "電競損手", "小青蛙與呱", "二等兵", "WHAT CAN I DO", "花花 毛毛 泡泡"],
+  "花輪隊": ["花輪同學", "K寶寶生氣了", "鐵之硬沼", "Ajoe1231", "blackbigbig", "我只會打星海", "Feelzacman", "爆豪1"],
+  "拿鐵隊": ["Latte喝拿鐵", "不能沒有你", "天晴Haruru", "懷疑Owo小熊", "請給我一個面子Ð", "樺樺98", "Cute SUP O v O b", "罵慧 MurrayTFT", "白帶1"],
 };
 
-const MemberItem = React.memo(({ member, data }) => (
-  <div className="flex items-center space-x-2 py-2">
-    <Avatar className="h-8 w-8">
-      {data ? <TierImage tier={data.tier} /> : <Skeleton className="h-full w-full rounded-full" />}
-    </Avatar>
-    <div className="flex-1">
-      <h3 className="text-sm font-medium">{member}</h3>
-    </div>
-    <div className="min-w-[0px] text-right">
+const MemberItem = React.memo(({ member, data, liveStreamer }) => (
+  <motion.div
+    className="grid grid-cols-[1fr_auto] sm:grid-cols-[minmax(0,1fr)_auto] items-center gap-2 py-2"
+    whileHover={{
+      scale: 1.05,
+      rotateX: 10,
+      transition: { duration: 0.3 },
+    }}
+    style={{ transformStyle: "preserve-3d" }}
+  >
+    <motion.div
+      className="flex flex-col sm:flex-row sm:items-center space-y-1 sm:space-y-0 sm:space-x-2 min-w-0"
+      style={{ transformStyle: "preserve-3d" }}
+    >
+      <h3 className="text-sm font-medium truncate sm:overflow-visible sm:whitespace-normal sm:line-clamp-2" title={member}>
+        {member}
+      </h3>
+      {liveStreamer && (
+        <a href={`https://www.twitch.tv/${liveStreamer.streamerName}`} target="_blank" rel="noopener noreferrer" className="flex-shrink-0 w-fit">
+          <span className='animate-pulse bg-[#9146FF] text-white text-xs font-bold px-2 py-1 rounded-full'>Live</span>
+        </a>
+      )}
+    </motion.div>
+    <motion.div
+      className="flex items-center space-x-2 justify-end"
+      style={{ transformStyle: "preserve-3d" }}
+    >
+      <Avatar className="h-8 w-8 flex-shrink-0">
+        {data ? <TierImage tier={data.tier} name={member} /> : <Skeleton className="h-full w-full rounded-full" />}
+      </Avatar>
       <Badge
         variant="secondary"
-        className="w-full inline-block font-mono"
+        className="w-16 inline-block font-mono text-center flex-shrink-0"
       >
-        {data ? `${data.leaguePoints} LP` : <Skeleton className="h-4 w-full" />}
+        {data ? `${data.leaguePoints}` : <Skeleton className="h-4 w-full" />}
       </Badge>
-    </div>
-  </div>
+    </motion.div>
+  </motion.div>
 ));
 
-const TeamItem = React.memo(({ teamName, members, summonerData }) => {
+const TeamItem = React.memo(({ teamName, members, summonerData, liveStreamers }) => {
   const sortedMembers = useMemo(() => {
     if (!summonerData || !summonerData[teamName]) return members;
 
@@ -83,6 +105,7 @@ const TeamItem = React.memo(({ teamName, members, summonerData }) => {
               key={memberIndex}
               member={member}
               data={summonerData && summonerData[teamName] ? summonerData[teamName].find(m => m.summonerName === member) : null}
+              liveStreamer={liveStreamers.find(streamer => streamer.playerName === member)}
             />
           ))}
         </div>
@@ -93,6 +116,7 @@ const TeamItem = React.memo(({ teamName, members, summonerData }) => {
 
 function SummonerLeaderboard() {
   const { summonerData } = useSummonerData();
+  const liveStreamers = useLiveStreamers();
 
   const sortedTeams = useMemo(() => {
     return Object.entries(INITIAL_TEAM_DATA)
@@ -127,7 +151,13 @@ function SummonerLeaderboard() {
         className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 sm:gap-4"
       >
         {sortedTeams.map((team) => (
-          <TeamItem key={team.teamName} teamName={team.teamName} members={team.members} summonerData={summonerData} />
+          <TeamItem
+            key={team.teamName}
+            teamName={team.teamName}
+            members={team.members}
+            summonerData={summonerData}
+            liveStreamers={liveStreamers}
+          />
         ))}
       </motion.div>
     </div>
