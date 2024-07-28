@@ -1,14 +1,1 @@
-{
-  "functions": {
-    "api/fetchData.js": {
-      "memory": 1024,
-      "maxDuration": 10
-    }
-  },
-  "rewrites": [
-    {
-      "source": "/((?!assets/).*)",
-      "destination": "/api/ssr.js"
-    }
-  ]
-}
+{}
