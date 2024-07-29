@@ -9,7 +9,6 @@ const useLiveStreamers = () => {
       try {
         const response = await axios.get('https://tft-api-twitch.playerlist.workers.dev/');
         setLiveStreamers(response.data.liveStreamers || []);
-        console.log(response.data.liveStreamers)
       } catch (error) {
         console.error('Error fetching live stream data:', error);
         setLiveStreamers([]);

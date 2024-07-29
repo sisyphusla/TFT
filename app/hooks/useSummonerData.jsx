@@ -1,18 +1,18 @@
 import { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 
-const CACHE_KEY = 'summonerDataCache';
-const CACHE_EXPIRATION = 60 * 1000; // 1 minute in milliseconds
-
 const API_URLS = [
-  'https://tft-api-mix.playerlist.workers.dev/',
-  'https://tft-api-worker1.playerlist.workers.dev/',
+  'https://tft-api-worker3.playerlist.workers.dev/',
   'https://tft-api-worker2.playerlist.workers.dev/',
-  'https://tft-api-worker3.playerlist.workers.dev/'
+  'https://tft-api-worker1.playerlist.workers.dev/',
 ];
 
+// const API_URLS = [
+//   'https://tft-api-mix.playerlist.workers.dev/',
+// ];
+
 const useSummonerData = () => {
-  const [summonerData, setSummonerData] = useState(null);
+  const [summonerData, setSummonerData] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -31,43 +31,31 @@ const useSummonerData = () => {
     }
   };
 
-  const fetchSummonerData = useCallback(async (forceRefresh = false) => {
+  const fetchSummonerData = useCallback(async () => {
     setLoading(true);
-    try {
-      const cachedData = localStorage.getItem(CACHE_KEY);
-      const cachedTime = localStorage.getItem(CACHE_KEY + '_time');
+    setError(null);
 
-      if (!forceRefresh && cachedData && cachedTime) {
-        const now = new Date().getTime();
-        if (now - parseInt(cachedTime) < CACHE_EXPIRATION) {
-          setSummonerData(JSON.parse(cachedData));
-          setLoading(false);
-          return;
-        }
-      }
+    const results = await Promise.all(API_URLS.map(url => fetchFromAPI(url)));
 
-      let data = null;
-      for (const url of API_URLS) {
-        data = await fetchFromAPI(url);
-        if (data && Object.keys(data).length > 0) {
-          break;
-        }
+    const mergedData = results.reduce((acc, result) => {
+      if (result && Object.keys(result).length > 0) {
+        Object.keys(result).forEach(teamName => {
+          if (!acc[teamName]) {
+            acc[teamName] = [];
+          }
+          acc[teamName] = [...acc[teamName], ...result[teamName]];
+        });
       }
+      return acc;
+    }, {});
 
-      if (data && Object.keys(data).length > 0) {
-        setSummonerData(data);
-        localStorage.setItem(CACHE_KEY, JSON.stringify(data));
-        localStorage.setItem(CACHE_KEY + '_time', new Date().getTime().toString());
-        setError(null);
-      } else {
-        setError('無法從任何 API 獲取完整數據');
-      }
-    } catch (error) {
-      console.error('Error fetching summoner data:', error);
-      setError('獲取召喚師數據失敗');
-    } finally {
-      setLoading(false);
+    if (Object.keys(mergedData).length > 0) {
+      setSummonerData(mergedData);
+    } else {
+      setError('無法從任何 API 獲取數據');
     }
+
+    setLoading(false);
   }, []);
 
   useEffect(() => {
@@ -75,7 +63,7 @@ const useSummonerData = () => {
   }, [fetchSummonerData]);
 
   const refreshData = () => {
-    fetchSummonerData(true);
+    fetchSummonerData();
   };
 
   return { summonerData, loading, error, refreshData };
