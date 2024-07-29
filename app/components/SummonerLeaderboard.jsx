@@ -33,13 +33,23 @@ const MemberItem = React.memo(({ member, data, liveStreamer }) => (
       className="flex flex-col sm:flex-row sm:items-center space-y-1 sm:space-y-0 sm:space-x-2 min-w-0"
       style={{ transformStyle: "preserve-3d" }}
     >
-      <h3 className="text-sm font-medium truncate sm:overflow-visible sm:whitespace-normal sm:line-clamp-2" title={member}>
-        {member}
-      </h3>
-      {liveStreamer && (
-        <a href={`https://www.twitch.tv/${liveStreamer.streamerName}`} target="_blank" rel="noopener noreferrer" className="flex-shrink-0 w-fit">
-          <span className='animate-pulse bg-[#9146FF] text-white text-xs font-bold px-2 py-1 rounded-full'>Live</span>
+      {liveStreamer ? (
+        <a
+          href={`https://www.twitch.tv/${liveStreamer.streamerName}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-sm font-medium truncate sm:overflow-visible sm:whitespace-normal sm:line-clamp-2 text-[#9146FF] animate-pulse"
+          title={member}
+        >
+          {member}
         </a>
+      ) : (
+        <h3
+          className="text-sm font-medium truncate sm:overflow-visible sm:whitespace-normal sm:line-clamp-2"
+          title={member}
+        >
+          {member}
+        </h3>
       )}
     </motion.div>
     <motion.div
