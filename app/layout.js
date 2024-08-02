@@ -2,6 +2,7 @@ import './globals.css';
 import { Inter } from 'next/font/google';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import GoogleAnalytics from './GoogleAnalytics';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -267,16 +268,6 @@ export default function RootLayout({ children }) {
           name="twitter:image"
           content="https://tftrank.vercel.app/api/og"
         />
-        {/* <!-- Google tag (gtag.js) --> */}
-        <script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-TH171F2MG4"
-        ></script>
-        <script>
-          window.dataLayer = window.dataLayer || []; function gtag()
-          {dataLayer.push(arguments)}
-          gtag('js', new Date()); gtag('config', 'G-TH171F2MG4');
-        </script>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -287,6 +278,7 @@ export default function RootLayout({ children }) {
           {/* <Header /> */}
           <main className="flex-grow" role="main" aria-label="主要內容">
             {children}
+            <GoogleAnalytics GA_MEASUREMENT_ID="G-TH171F2MG4" />
           </main>
           {/* <Footer /> */}
         </div>
