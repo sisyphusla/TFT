@@ -12,11 +12,11 @@ import { Skeleton } from "@/components/ui/skeleton";
 const HIGH_TIERS = ['CHALLENGER', 'GRANDMASTER', 'MASTER'];
 
 const INITIAL_TEAM_DATA = {
+  "拿鐵隊": ["懷疑Owo小熊", "天晴Haruru", "Latte喝拿鐵", "不能沒有你", "請給我一個面子Ð", "樺樺98", "Cute SUP O v O b", "罵慧 MurrayTFT", "白帶1"],
+  "綠茶隊": ["摸雞MoGG", "Greentea喝綠茶", "小娜啊", "偶爾愛你", "I3ubb1e", "妳家祖祠留給你住", "地瓜QQBALL", "一窩六口"],
+  "花輪隊": ["鐵之硬沼", "花輪同學", "K寶寶生氣了", "Ajoe1231", "blackbigbig", "我只會打星海", "Feelzacman", "爆豪1"],
   "TERRY隊": ["terrytft", "Fallhalp", "Wingnism", "Phantasm殺手", "摘星旅人", "2017FIFA", "貝貝豬頭皮", "loveactually"],
-  "綠茶隊": ["Greentea喝綠茶", "小娜啊", "摸雞MoGG", "偶爾愛你", "I3ubb1e", "妳家祖祠留給你住", "地瓜QQBALL", "一窩六口"],
   "白龍隊": ["白龍1", "AQ1H", "河川先子", "電競損手", "小青蛙與呱", "二等兵", "WHAT CAN I DO", "花花 毛毛 泡泡"],
-  "花輪隊": ["花輪同學", "K寶寶生氣了", "鐵之硬沼", "Ajoe1231", "blackbigbig", "我只會打星海", "Feelzacman", "爆豪1"],
-  "拿鐵隊": ["Latte喝拿鐵", "不能沒有你", "天晴Haruru", "懷疑Owo小熊", "請給我一個面子Ð", "樺樺98", "Cute SUP O v O b", "罵慧 MurrayTFT", "白帶1"],
 };
 
 const MemberItem = React.memo(({ member, data, liveStreamer }) => (
